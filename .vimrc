@@ -14,7 +14,7 @@ Bundle 'davidhalter/jedi-vim'
 "
 
 "Use 'F2' to activate NerdTree
-map <F2> :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -30,10 +30,12 @@ map <F2> :NERDTreeToggle<CR>
 " ]]            Jump on next class or function (normal, visual, operator modes)
 " [M            Jump on previous class or method (normal, visual, operator modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
+
+" Turning off rope so Jedi Vim can be used for autocomplete
 let g:pymode_rope = 0
 
 " Documentation
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 
 "Linting
@@ -93,8 +95,11 @@ let g:pymode_lint_signs = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Run Python and Jython script
-map <F3> :!python %<CR>
-map <F4> :!jython %<CR>
+noremap <F3> :!python %<CR>
+noremap <F4> :!jython %<CR>
+
+"Run PDB on Python script
+noremap <F5> :!python -i -u -m pdb %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -247,32 +252,32 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader><cr> :noh<cr>
 
 " " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 "
 " " Close the current buffer
-map <leader>bd :bd<cr>
+noremap <leader>bd :bd<cr>
 "
 " " Close all the buffers
-map <leader>ba :ba<cr>
+noremap <leader>ba :ba<cr>
 "
 " " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove<cr>
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove<cr>
 
 " " Opens a new tab with the current buffer's path
 " " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+noremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "
 " " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 "
 " " Specify the behavior when switching between buffers 
 try
