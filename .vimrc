@@ -38,12 +38,6 @@ let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-" Auto check on save
-let g:pymode_lint_write = 1
-
 " Support virtualenv
 let g:pymode_virtualenv = 1
 
@@ -70,7 +64,7 @@ let g:pymode_lint = 1
 
 " " Switch pylint, pyflakes, pep8, mccabe code-checkers
 " " Can have multiply values "pep8,pyflakes,mcccabe"
-" let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+let g:pymode_lint_checker = "pyflakes"
 
 " " Skip errors and warnings
 " " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
@@ -203,7 +197,7 @@ endif
 set encoding=utf8
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set ffs=unix
 
 
 
