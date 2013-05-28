@@ -11,6 +11,7 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'kien/ctrlp.vim'
 "
 
 "Use 'F2' to activate NerdTree
@@ -38,6 +39,12 @@ let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 
+"Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes"
+" Auto check on save
+let g:pymode_lint_write = 1
+
 " Support virtualenv
 let g:pymode_virtualenv = 1
 
@@ -51,8 +58,8 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
-" autofold code
-let g:pymode_folding = 1
+" no autofold code
+let g:pymode_folding = 0
 
 """"""""""""""""""""""""""""""""
 
@@ -198,6 +205,9 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix
+
+" Use Courier New font
+set guifont =Courier_New:h11:b
 
 
 
