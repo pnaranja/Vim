@@ -94,6 +94,9 @@ let g:pymode_lint_message = 1
 " " Place error signs
 let g:pymode_lint_signs = 1
 
+" " Setting AutoPEP8 to F8
+noremap <F8> :PyLintAuto<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Run Python and Jython script
@@ -205,7 +208,7 @@ endif
 set encoding=utf8
 
 " Use Unix as the standard file type
-set ffs=unix
+set ffs=unix,dos
 
 " Use Courier New font
 set guifont =Courier_New:h11:b
