@@ -12,6 +12,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'http://github.com/rosenfeld/conque-term.git'
 "
 
 "Use 'F2' to activate NerdTree
