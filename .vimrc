@@ -132,6 +132,15 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w<cr>
 
+" " Copy and Paste to interact outside GVIM
+vnoremap <leader>c "+y
+noremap <leader>p "+gP
+
+if has('win32')
+    noremap <leader>cb :ConqueTerm cmd.exe<CR>
+elseif has('unix')
+    noremap <leader>cb :ConqueTerm bash<CR>
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -253,9 +262,6 @@ set laststatus=2
 " " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
-" " Copy and Paste to interact outside GVIM
-vnoremap <leader>c "+y
-noremap <leader>p "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
