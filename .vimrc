@@ -136,21 +136,25 @@ noremap <leader>w :w<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive (Git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Status, Log, Add and Commit
+" Status, Log, Branch, Add and Commit
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gl :Git log<CR>
+noremap <leader>gb :Git branch<CR>
 noremap <leader>ga :Gwrite<CR>
 noremap <leader>gc :Gcommit<CR>
 
-" Fetch, Merge and Pull
+" Fetch, Merge, Pull and Push
 noremap <leader>gfm :Git fetch origin master<cr>
 noremap <leader>gfb :Git fetch origin branch1<cr>
 
 noremap <leader>gmm :Git merge origin master<cr>
 noremap <leader>gmb :Git merge origin branch1<cr>
 
-noremap <leader>gpm :Git pull origin master<cr>
-noremap <leader>gpb :Git pull origin branch1<cr>
+noremap <leader>gplm :Git pull origin master<cr>
+noremap <leader>gplb :Git pull origin branch1<cr>
+
+noremap <leader>gpsm :Git push origin master<cr>
+noremap <leader>gpsb :Git push origin branch1<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
