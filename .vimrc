@@ -131,24 +131,24 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w<cr>
+noremap <leader>w :w<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive (Git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add and Commit
-nmap <leader>ga :Gwrite<CR>
-nmap <leader>gc :Gcommit<CR>
+noremap <leader>ga :Gwrite<CR>
+noremap <leader>gc :Gcommit<CR>
 
 " Fetch, Merge and Pull
-nmap <leader>gfm :Git fetch origin master
-nmap <leader>gfb :Git fetch origin branch1
+noremap <leader>gfm :Git fetch origin master
+noremap <leader>gfb :Git fetch origin branch1
 
-nmap <leader>gmm :Git merge origin master
-nmap <leader>gmb :Git merge origin branch1
+noremap <leader>gmm :Git merge origin master
+noremap <leader>gmb :Git merge origin branch1
 
-nmap <leader>gpm :Git pull origin master
-nmap <leader>gpb :Git pull origin branch1
+noremap <leader>gpm :Git pull origin master
+noremap <leader>gpb :Git pull origin branch1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
