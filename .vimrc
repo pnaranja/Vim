@@ -5,7 +5,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " " required!
-Bundle 'gmarik/vundle'
+Bundle 'http://github.com/gmarik/vundle.git'
 "
 " " The bundles you install will be listed here
 Bundle 'scrooloose/nerdtree'
@@ -13,6 +13,7 @@ Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'http://github.com/rosenfeld/conque-term.git'
+Bundle 'tpope/vim-fugitive'
 "
 
 "Use 'F2' to activate NerdTree
@@ -132,15 +133,23 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w<cr>
 
-" " Copy and Paste to interact outside GVIM
-vnoremap <leader>c "+y
-noremap <leader>p "+gP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fugitive (Git)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add and Commit
+nmap <leader>ga :Gwrite<CR>
+nmap <leader>gc :Gcommit<CR>
 
-if has('win32')
-    noremap <leader>cb :ConqueTerm cmd.exe<CR>
-elseif has('unix')
-    noremap <leader>cb :ConqueTerm bash<CR>
-endif
+" Fetch, Merge and Pull
+nmap <leader>gfm :Git fetch origin master
+nmap <leader>gfb :Git fetch origin branch1
+
+nmap <leader>gmm :Git merge origin master
+nmap <leader>gmb :Git merge origin branch1
+
+nmap <leader>gpm :Git pull origin master
+nmap <leader>gpb :Git pull origin branch1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -262,6 +271,9 @@ set laststatus=2
 " " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
+" " Copy and Paste to interact outside GVIM
+vnoremap <leader>c "+y
+noremap <leader>p "+gP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
