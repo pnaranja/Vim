@@ -134,6 +134,15 @@ let g:mapleader = ","
 noremap <leader>w :w<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ConqueTerm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("unix")
+    noremap <leader>ct :ConqueTerm bash<cr>
+elseif has("win32")
+    noremap <leader>ct :ConqueTerm cmd.exe<cr>
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive (Git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status, Log, Branch, Add and Commit
