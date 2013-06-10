@@ -14,6 +14,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'http://github.com/rosenfeld/conque-term.git'
 Bundle 'tpope/vim-fugitive'
+Bundle 'noah/vim256-color'
 "
 
 "Use 'F2' to activate NerdTree
@@ -226,14 +227,16 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme blackboard
+" For setting 256 color schemes
+set t_Co=256
+
+colorscheme twilight256
 set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 
