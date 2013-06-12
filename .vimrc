@@ -5,7 +5,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " " required!
-Bundle 'http://github.com/gmarik/vundle.git'
+Bundle 'gmarik/vundle'
 "
 " " The bundles you install will be listed here
 Bundle 'scrooloose/nerdtree'
@@ -230,7 +230,7 @@ syntax enable
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme twilight256
+colorscheme blackboard
 set background=dark
 
 " Set extra options when running in GUI mode
@@ -247,7 +247,8 @@ set encoding=utf8
 set ffs=unix,dos
 
 " Use Courier New font
-set guifont =Courier_New:h11:b
+"set guifont =Fixed:h11:b
+set guifont ="Fixed Bold 11"
 
 
 
