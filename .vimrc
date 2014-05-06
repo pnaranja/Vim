@@ -1,20 +1,22 @@
 set nocompatible
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
 " " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 "
 " " The bundles you install will be listed here
-Bundle 'scrooloose/nerdtree'
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'http://github.com/rosenfeld/conque-term.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'noah/vim256-color'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'http://github.com/rosenfeld/conque-term.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'noah/vim256-color'
+Plugin 'derekwyatt/vim-scala'
 "
 
 "Use 'F2' to activate NerdTree
@@ -230,7 +232,7 @@ syntax enable
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme blackboard
+colorscheme desert
 set background=dark
 
 " Set extra options when running in GUI mode
