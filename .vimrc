@@ -17,6 +17,7 @@ Plugin 'http://github.com/rosenfeld/conque-term.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'noah/vim256-color'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'kongo2002/fsharp-vim'
 "
 
 "Use 'F2' to activate NerdTree
@@ -76,7 +77,7 @@ let g:pymode_lint = 1
 
 " " Switch pylint, pyflakes, pep8, mccabe code-checkers
 " " Can have multiply values "pep8,pyflakes,mcccabe"
-let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_checker = "pyflakes, mccabe"
 
 " " Skip errors and warnings
 " " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
@@ -167,6 +168,11 @@ noremap <leader>gplb :Git pull origin branch1<cr>
 
 noremap <leader>gpsm :Git push origin master<cr>
 noremap <leader>gpsb :Git push origin branch1<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_python_checkers = ['flake8']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
