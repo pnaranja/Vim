@@ -5,7 +5,7 @@
 " Last Change:  20 August 2009
 " License:      public domain
 " Version:      1.4
-
+"
 set background=dark
 hi clear
 if exists("syntax_on")
