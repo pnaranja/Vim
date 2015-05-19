@@ -16,7 +16,9 @@ Plugin 'http://github.com/rosenfeld/conque-term.git'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fugitive'
 Plugin 'noah/vim256-color'
-Plugin 'oblitum/rainbow'
+Plugin 'luochen1990/rainbow'
+
+
 
 " For particular programming languages
 Plugin 'klen/python-mode'
@@ -25,11 +27,44 @@ Plugin 'kongo2002/fsharp-vim'
 Plugin 'guns/vim-clojure-static' 
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
-Plugin 'tpope/vim-fireplace' 
+Plugin 'tpope/vim-fireplace'
+Plugin 'vim-scripts/paredit.vim'
 "
 
-"Use 'F2' to activate NerdTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Sets how many lines of history VIM has to remember
+set history=700
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Recognize jython files as python
+au BufNewFile,BufRead *.jy set filetype=python
+
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+noremap <leader>w :w<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use 'F2' to activate NerdTree
 noremap <F2> :NERDTreeToggle<CR>
+
+" Use 'F5' to reload your file
+noremap <F5> :e<CR>
+
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -108,7 +143,7 @@ let g:pymode_lint_message = 1
 let g:pymode_lint_signs = 1
 
 " " Setting AutoPEP8 to F8
-noremap <F8> :PyLintAuto<CR>
+noremap <F7> :PyLintAuto<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,38 +151,12 @@ noremap <F8> :PyLintAuto<CR>
 noremap <F3> :!python %<CR>
 noremap <F4> :!jython %<CR>
 
-"Run PDB on Python script
-noremap <F5> :!python -i -u -m pdb %<CR>
-
-"Run FSharp Interactive and Compilation
-noremap <F6> :!fsi %<CR>
-noremap <F7> :!fsc %<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Recognize jython files as python
-au BufNewFile,BufRead *.jy set filetype=python
-
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-" Fast saving
-noremap <leader>w :w<cr>
+""Run PDB on Python script
+noremap <F6> :!python -i -u -m pdb %<CR>
+"
+""Run FSharp Interactive and Compilation
+noremap <F8> :!fsi %<CR>
+noremap <F9> :!fsc %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
@@ -252,12 +261,12 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
+syntax on
 
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme desert
-set background=dark
+colorscheme molokai2
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -274,7 +283,8 @@ set ffs=unix,dos
 
 " Use Courier New font
 "set guifont =Fixed:h11:b
-set guifont ="Fixed Bold 11"
+"set guifont ="Fixed Bold 11"
+set guifont=courier_new:h13:b
 
 
 
@@ -332,12 +342,16 @@ noremap <C-j> <C-W>j
 noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
-"
+
 " " Close the current buffer
 noremap <leader>bd :bd<cr>
-"
 " " Close all the buffers
 noremap <leader>ba :ba<cr>
+" " Switch to next buffer
+noremap <leader>bn :bn <cr>
+" " Close all the buffers except current buffer
+noremap <leader>bo :BufOnly! <cr>
+
 "
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
@@ -398,4 +412,75 @@ function! HasPaste()
         return 'PASTE MODE  '
     en
         return ''
+endfunction
+
+
+" BufOnly.vim  -  Delete all the buffers except the current/named buffer.
+"
+" Copyright November 2003 by Christian J. Robinson <infynity@onewest.net>
+"
+" Distributed under the terms of the Vim license.  See ":help license".
+"
+" Usage:
+"
+" :Bonly / :BOnly / :Bufonly / :BufOnly [buffer] 
+"
+" Without any arguments the current buffer is kept.  With an argument the
+" buffer name/number supplied is kept.
+
+command! -nargs=? -complete=buffer -bang Bonly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang BOnly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang Bufonly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang BufOnly
+    \ :call BufOnly('<args>', '<bang>')
+
+function! BufOnly(buffer, bang)
+	if a:buffer == ''
+		" No buffer provided, use the current buffer.
+		let buffer = bufnr('%')
+	elseif (a:buffer + 0) > 0
+		" A buffer number was provided.
+		let buffer = bufnr(a:buffer + 0)
+	else
+		" A buffer name was provided.
+		let buffer = bufnr(a:buffer)
+	endif
+
+	if buffer == -1
+		echohl ErrorMsg
+		echomsg "No matching buffer for" a:buffer
+		echohl None
+		return
+	endif
+
+	let last_buffer = bufnr('$')
+
+	let delete_count = 0
+	let n = 1
+	while n <= last_buffer
+		if n != buffer && buflisted(n)
+			if a:bang == '' && getbufvar(n, '&modified')
+				echohl ErrorMsg
+				echomsg 'No write since last change for buffer'
+							\ n '(add ! to override)'
+				echohl None
+			else
+				silent exe 'bdel' . a:bang . ' ' . n
+				if ! buflisted(n)
+					let delete_count = delete_count+1
+				endif
+			endif
+		endif
+		let n = n+1
+	endwhile
+
+	if delete_count == 1
+		echomsg delete_count "buffer deleted"
+	elseif delete_count > 1
+		echomsg delete_count "buffers deleted"
+	endif
+
 endfunction
