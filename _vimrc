@@ -17,6 +17,7 @@ Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fugitive'
 Plugin 'noah/vim256-color'
 Plugin 'luochen1990/rainbow'
+Plugin 'bling/vim-airline'
 
 
 
