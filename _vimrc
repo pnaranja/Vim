@@ -38,6 +38,9 @@ Plugin 'vim-scripts/paredit.vim'
 " Sets how many lines of history VIM has to remember
 set history=700
 
+" Enable line numbers
+set nu
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -157,6 +160,9 @@ noremap <F6> :!python -i -u -m pdb %<CR>
 ""Run FSharp Interactive and Compilation
 noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
+
+" Evaluate Clojure File
+noremap <leader>e :%Eval
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
