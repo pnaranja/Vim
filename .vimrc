@@ -53,6 +53,9 @@ au BufNewFile,BufRead *.jy set filetype=python
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" Set current working directory as the file that is open
+autocmd BufEnter * silent! lcd %:p:h
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -165,6 +168,14 @@ noremap <F9> :!fsc %<CR>
 " Evaluate Clojure File
 noremap <leader>e :%Eval
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clojure paraedit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Slurp and Barf respectively
+noremap <leader>< <A-h>
+noremap <leader>> <A-l>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,27 +197,28 @@ noremap <leader>gc :Gcommit<CR>
 
 " Fetch, Merge, Pull and Push
 noremap <leader>gfm :Git fetch origin master<cr>
-noremap <leader>gfb :Git fetch origin branch1<cr>
 
 noremap <leader>gmm :Git merge origin master<cr>
-noremap <leader>gmb :Git merge origin branch1<cr>
 
 noremap <leader>gplm :Git pull origin master<cr>
-noremap <leader>gplb :Git pull origin branch1<cr>
 
 noremap <leader>gpsm :Git push origin master<cr>
-noremap <leader>gpsb :Git push origin branch1<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_checkers = ['flake8']
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add Current Working Directory
+let g:airline_section_b = '%{getcwd()}'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -350,6 +362,8 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
+" " Open new buffer
+noremap <leader>bnn :enew<cr>
 " " Close the current buffer
 noremap <leader>bd :bd<cr>
 " " Close all the buffers
@@ -369,10 +383,7 @@ noremap <leader>tm :tabmove<cr>
 " " Opens a new tab with the current buffer's path
 " " Super useful when editing files in the same directory
 noremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-"
-" " Switch CWD to the directory of the open buffer
-noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
-"
+
 " " Specify the behavior when switching between buffers 
 try
    set switchbuf=useopen,usetab,newtab
