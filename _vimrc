@@ -12,7 +12,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'http://github.com/rosenfeld/conque-term.git'
+Plugin 'rosenfeld/conque-term' 
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fugitive'
 Plugin 'noah/vim256-color'
@@ -29,7 +29,7 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
 Plugin 'tpope/vim-fireplace'
-Plugin 'vim-scripts/paredit.vim'
+Plugin 'https://github.com/kovisoft/paredit'
 "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,6 +175,9 @@ noremap <leader>e :%Eval
 " Slurp and Barf respectively
 noremap <leader>< <A-h>
 noremap <leader>> <A-l>
+
+vnoremap <leader>< <A-h>
+vnoremap <leader>> <A-l>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
