@@ -90,32 +90,46 @@ noremap <F5> :e<CR>
 
 " Turning off rope so Jedi Vim can be used for autocomplete
 let g:pymode_rope = 0
+let pymode_rope = 0
 
 " Documentation
 let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
+let pymode_doc = 0
+let pymode_doc_key = 'K'
 
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes"
+let pymode_lint = 1
+let pymode_lint_checker = "pyflakes"
 " Auto check on save
 let g:pymode_lint_write = 1
+let pymode_lint_write = 1
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
+let pymode_virtualenv = 1
 
 " Enable breakpoints plugin
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
+let pymode_breakpoint = 1
+let pymode_breakpoint_key = '<leader>b'
 
 " syntax highlighting
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let pymode_syntax = 1
+let pymode_syntax_all = 1
+let pymode_syntax_indent_errors = g:pymode_syntax_all
+let pymode_syntax_space_errors = g:pymode_syntax_all
 
 " no autofold code
 let g:pymode_folding = 0
+let pymode_folding = 0
 
 """"""""""""""""""""""""""""""""
 
@@ -124,14 +138,17 @@ let g:pymode_folding = 0
 " """"""""""""""""""""""""""""""
 " Load pylint code plugin
 let g:pymode_lint = 1
+let pymode_lint = 1
 
 " " Switch pylint, pyflakes, pep8, mccabe code-checkers
 " " Can have multiply values "pep8,pyflakes,mcccabe"
 let g:pymode_lint_checker = "pyflakes, mccabe"
+let pymode_lint_checker = "pyflakes, mccabe"
 
 " " Skip errors and warnings
 " " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
 let g:pymode_lint_ignore = "E501"
+let pymode_lint_ignore = "E501"
 
 " " Select errors and warnings
 " " E.g. "E4,W"
@@ -139,15 +156,19 @@ let g:pymode_lint_ignore = "E501"
 
 " " Check code every save
 let g:pymode_lint_write = 1
+let pymode_lint_write = 1
 
 " " Auto open cwindow if errors be finded
 let g:pymode_lint_cwindow = 1
+let pymode_lint_cwindow = 1
 "
 " " Show error message if cursor placed at the error line
 let g:pymode_lint_message = 1
+let pymode_lint_message = 1
 
 " " Place error signs
 let g:pymode_lint_signs = 1
+let pymode_lint_signs = 1
 
 " " Setting AutoPEP8 to F8
 noremap <F7> :PyLintAuto<CR>
@@ -167,17 +188,6 @@ noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
 noremap <leader>e :%Eval
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Clojure paraedit
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Slurp and Barf respectively
-noremap <leader>< <A-h>
-noremap <leader>> <A-l>
-
-vnoremap <leader>< <A-h>
-vnoremap <leader>> <A-l>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
@@ -211,17 +221,20 @@ noremap <leader>gpsm :Git push origin master<cr>
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_checkers = ['flake8']
+let syntastic_python_checkers = ['flake8']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
+let rainbow_active = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add Current Working Directory
 let g:airline_section_b = '%{getcwd()}'
+let airline_section_b = '%{getcwd()}'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
