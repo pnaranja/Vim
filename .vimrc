@@ -64,6 +64,9 @@ let g:mapleader = ","
 " Fast saving
 noremap <leader>w :w<cr>
 
+" Select all
+noremap <leader>sa 1GVG
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use 'F2' to activate NerdTree
