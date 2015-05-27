@@ -69,6 +69,9 @@ noremap <leader>sa 1GVG
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Quick open of the vimrc file
+noremap <leader>v :e $MYVIMRC<CR>
+
 " Use 'F2' to activate NerdTree
 noremap <F2> :NERDTreeToggle<CR>
 
@@ -371,7 +374,6 @@ noremap <leader>p "+gP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " " Disable highlight when <leader><cr> is pressed
 noremap <silent> <leader><cr> :noh<cr>
 
