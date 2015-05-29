@@ -75,8 +75,8 @@ noremap <leader>v :e $MYVIMRC<CR>
 " Use 'F2' to activate NerdTree
 noremap <F2> :NERDTreeToggle<CR>
 
-" Use 'F5' to reload your file
-noremap <F5> :e<CR>
+" Use 'F5' to reload your file and go to the bottom of screen
+noremap <F5> :e<CR>G
 
 
 """"""""""""""""""""""""""""""""
