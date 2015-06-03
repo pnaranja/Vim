@@ -36,6 +36,12 @@ Plugin 'https://github.com/kovisoft/paredit'
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" <leader> is <space> and comma
+let mapleader = ","
+let g:mapleader = ","
+noremap <space> <Nop>
+map <space> <leader>
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -56,10 +62,6 @@ set autoread
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 noremap <leader>w :w<cr>
