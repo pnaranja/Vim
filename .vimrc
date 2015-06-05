@@ -178,7 +178,7 @@ let pymode_lint_message = 1
 let g:pymode_lint_signs = 1
 let pymode_lint_signs = 1
 
-" " Setting AutoPEP8 to F8
+" " Setting AutoPEP8 to F7
 noremap <F7> :PyLintAuto<CR>
 
 
@@ -196,6 +196,12 @@ noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
 noremap <leader>e :%Eval
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clojure - paraedit.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TO DO!!!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
