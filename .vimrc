@@ -196,7 +196,7 @@ noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
-noremap <leader>e :%Eval
+noremap <leader>e :%Eval<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
