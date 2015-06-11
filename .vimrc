@@ -30,6 +30,7 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
 Plugin 'tpope/vim-fireplace'
+Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
 "
 
@@ -196,7 +197,7 @@ noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
-noremap <leader>e :%Eval<CR>
+noremap <leader>e :%Eval
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -257,7 +258,7 @@ let airline_section_b = '%{getcwd()}'
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Turn on the WiLd menu
+" Turn on the Wild menu
 set wildmenu
 
 " Ignore compiled files
@@ -332,8 +333,6 @@ set encoding=utf8
 set ffs=unix,dos
 
 " Use Courier New font
-"set guifont =Fixed:h11:b
-"set guifont ="Fixed Bold 11"
 set guifont=courier_new:h13:b
 
 
@@ -393,22 +392,21 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
 " " Open new buffer
-noremap <leader>bnn :enew<cr>
+noremap <leader>bn :enew<cr>
 " " Close the current buffer
-noremap <leader>bd :bd<cr>
+noremap bd :bd<cr>
 " " Close all the buffers
-noremap <leader>ba :ba<cr>
+noremap ba :ba<cr>
 " " Switch to next buffer
-noremap <leader>bn :bn <cr>
+noremap bn :bn <cr>
 " " Close all the buffers except current buffer
-noremap <leader>bo :BufOnly! <cr>
+noremap bo :BufOnly! <cr>
 
 "
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
-noremap <leader>to :tabonly<cr>
-noremap <leader>tc :tabclose<cr>
-noremap <leader>tm :tabmove<cr>
+noremap to :tabonly<cr>
+noremap td :tabclose<cr>
 
 " " Opens a new tab with the current buffer's path
 " " Super useful when editing files in the same directory
