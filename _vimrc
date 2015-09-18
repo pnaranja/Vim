@@ -32,6 +32,8 @@ Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-fireplace'
 Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -317,7 +319,7 @@ syntax on
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme molokai2
+colorscheme molokai
 
 " Set extra options when running in GUI mode
 if has("gui_running")
