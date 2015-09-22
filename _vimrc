@@ -204,6 +204,10 @@ noremap <F9> :!fsc %<CR>
 " Evaluate Clojure File
 noremap <leader>e :%Eval
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode=''
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clojure - paraedit.vim
