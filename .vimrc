@@ -32,6 +32,8 @@ Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-fireplace'
 Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -43,6 +45,9 @@ let mapleader = ","
 let g:mapleader = ","
 noremap <space> <Nop>
 map <space> <leader>
+
+" Use ; for commands
+noremap ; :
 
 " Sets how many lines of history VIM has to remember
 set history=700
@@ -317,7 +322,7 @@ syntax on
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme molokai2
+colorscheme molokai
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -530,3 +535,9 @@ function! BufOnly(buffer, bang)
 	endif
 
 endfunction
+
+" Autorelod vimrc
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }

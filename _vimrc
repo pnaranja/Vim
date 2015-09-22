@@ -46,6 +46,9 @@ let g:mapleader = ","
 noremap <space> <Nop>
 map <space> <leader>
 
+" Use ; for commands
+noremap ; :
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -532,3 +535,9 @@ function! BufOnly(buffer, bang)
 	endif
 
 endfunction
+
+" Autorelod vimrc
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
