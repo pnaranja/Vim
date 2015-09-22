@@ -406,6 +406,8 @@ noremap ba :ba<cr>
 noremap bn :bn <cr>
 " " Close all the buffers except current buffer
 noremap bo :BufOnly! <cr>
+" " List buffers
+noremap <leader>l :ls <cr>
 
 "
 " " Useful mappings for managing tabs
