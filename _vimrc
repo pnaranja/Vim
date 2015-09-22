@@ -322,7 +322,7 @@ syntax on
 " For setting 256 color schemes
 set t_Co=256
 
-colorscheme molokai
+colorscheme molokai2
 
 " Set extra options when running in GUI mode
 if has("gui_running")
