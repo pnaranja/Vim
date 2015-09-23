@@ -30,6 +30,8 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
 Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
 Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
 Plugin 'jelera/vim-javascript-syntax'
@@ -325,8 +327,9 @@ syntax on
 
 " For setting 256 color schemes
 set t_Co=256
+let g:rehash256 = 1
 
-colorscheme molokai2
+colorscheme molokai
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -336,7 +339,7 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+" set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos
