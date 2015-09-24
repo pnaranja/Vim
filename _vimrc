@@ -90,6 +90,10 @@ noremap <F2> :NERDTreeToggle<CR>
 noremap <F5> :e<CR>G
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"NEOVIM settings
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 """"""""""""""""""""""""""""""""
 " Python-mode
 " Activate rope
@@ -204,17 +208,12 @@ noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
-noremap <leader>e :%Eval
+noremap <leader>e :%Eval<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode=''
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Clojure - paraedit.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TO DO!!!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
@@ -404,10 +403,12 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-l> <C-\><C-n><C-w>l
+if has('nvim')
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 
 " " Open new buffer
 noremap <leader>bn :enew<cr>

@@ -92,9 +92,7 @@ noremap <F5> :e<CR>G
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NEOVIM settings
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 
 """"""""""""""""""""""""""""""""
 " Python-mode
