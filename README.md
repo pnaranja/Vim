@@ -1,2 +1,4 @@
 VIM settings 
-Contains the .vimrc and _vimrc files 
+============
+
+Contains .vimrc and _vimrc files which are identical
