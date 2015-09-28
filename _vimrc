@@ -16,7 +16,7 @@ Plugin 'rosenfeld/conque-term'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'noah/vim256-color'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'luochen1990/rainbow'
 Plugin 'bling/vim-airline'
 
@@ -324,11 +324,7 @@ set tm=500
 syntax enable
 syntax on
 
-" For setting 256 color schemes
-set t_Co=256
-let g:rehash256 = 1
-
-colorscheme molokai
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
