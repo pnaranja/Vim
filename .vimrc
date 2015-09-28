@@ -30,6 +30,8 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
 Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
 Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
 Plugin 'jelera/vim-javascript-syntax'
@@ -322,13 +324,15 @@ set tm=500
 syntax enable
 syntax on
 
-colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
+    colorscheme solarized
+else
+    colorscheme Monokai
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language

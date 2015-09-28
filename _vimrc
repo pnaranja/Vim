@@ -324,13 +324,15 @@ set tm=500
 syntax enable
 syntax on
 
-colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
+    colorscheme solarized
+else
+    colorscheme Monokai
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
