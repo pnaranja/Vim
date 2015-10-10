@@ -7,7 +7,6 @@ call vundle#rc()
 " " required!
 Plugin 'gmarik/Vundle.vim'
 "
-" " The bundles you install will be listed here
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'davidhalter/jedi-vim'
@@ -20,12 +19,12 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'luochen1990/rainbow'
 Plugin 'bling/vim-airline'
 
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 
 
 " For particular programming languages
 Plugin 'klen/python-mode'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'kongo2002/fsharp-vim'
 Plugin 'guns/vim-clojure-static' 
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
@@ -70,7 +69,6 @@ set autoread
 
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
-
 
 " Fast saving
 noremap <leader>w :w<cr>
