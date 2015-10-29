@@ -25,6 +25,7 @@ Plugin 'xolox/vim-misc'
 
 " For particular programming languages
 Plugin 'klen/python-mode'
+
 Plugin 'guns/vim-clojure-static' 
 Plugin 'guns/vim-clojure-highlight' 
 Plugin 'tpope/vim-leiningen' 
@@ -33,6 +34,7 @@ Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
 Plugin 'venantius/vim-eastwood'
 Plugin 'https://github.com/kovisoft/paredit'
+
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 "
@@ -91,6 +93,11 @@ noremap <F5> :e<CR>G
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NEOVIM settings
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vim Note settings
+let g:notes_directories = ['~/vimnotes']
+let g:notes_title_sync = 'rename_file'
 
 """"""""""""""""""""""""""""""""
 " Python-mode
