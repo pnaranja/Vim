@@ -3,13 +3,12 @@ set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-" let Vundle manage Vundle
-" " required!
+" let Vundle manage Vundle (required)
 Plugin 'gmarik/Vundle.vim'
-"
+
+" General Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rosenfeld/conque-term' 
 Plugin 'tpope/vim-classpath'
@@ -19,12 +18,13 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'luochen1990/rainbow'
 Plugin 'bling/vim-airline'
 
+" For note taking
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 
-
 " For particular programming languages
 Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
 
 Plugin 'guns/vim-clojure-static' 
 Plugin 'guns/vim-clojure-highlight' 
@@ -37,7 +37,8 @@ Plugin 'https://github.com/kovisoft/paredit'
 
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-"
+
+Plugin 'wting/rust.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
