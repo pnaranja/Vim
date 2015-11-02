@@ -22,6 +22,9 @@ Plugin 'bling/vim-airline'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 
+" Searching
+Plugin 'mileszs/ack.vim'
+
 " For particular programming languages
 Plugin 'klen/python-mode'
 Plugin 'davidhalter/jedi-vim'
@@ -38,7 +41,7 @@ Plugin 'https://github.com/kovisoft/paredit'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -99,6 +102,12 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "Vim Note settings
 let g:notes_directories = ['~/vimnotes']
 let g:notes_title_sync = 'rename_file'
+
+""""""""""""""""""""""""""""""""
+" Ack/Ag settings
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 """"""""""""""""""""""""""""""""
 " Python-mode
