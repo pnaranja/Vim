@@ -1,43 +1,38 @@
 set nocompatible
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'davidhalter/jedi-vim'
+Plug 'kien/ctrlp.vim'
+Plug 'rosenfeld/conque-term' 
+Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'flazz/vim-colorschemes'
+Plug 'luochen1990/rainbow'
+Plug 'bling/vim-airline'
+Plug 'https://github.com/kovisoft/paredit'
 
-" let Vundle manage Vundle
-" " required!
-Plugin 'gmarik/Vundle.vim'
-"
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rosenfeld/conque-term' 
-Plugin 'tpope/vim-classpath'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'luochen1990/rainbow'
-Plugin 'bling/vim-airline'
-
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 
 " For particular programming languages
-Plugin 'klen/python-mode'
+Plug 'klen/python-mode' , { 'for' : 'python' }
 
-Plugin 'guns/vim-clojure-static' 
-Plugin 'guns/vim-clojure-highlight' 
-Plugin 'tpope/vim-leiningen' 
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people' 
-Plugin 'venantius/vim-eastwood'
-Plugin 'https://github.com/kovisoft/paredit'
+Plug 'guns/vim-clojure-static' , { 'for' : 'clojure' }
+Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
+Plug 'tpope/vim-leiningen' , { 'for' : 'clojure' }
+Plug 'tpope/vim-fireplace' , { 'for' : 'clojure' }
+Plug 'guns/vim-sexp', { 'for' : 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people' , { 'for' : 'clojure' }
+Plug 'venantius/vim-eastwood',  { 'for' : 'clojure' }
 
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-"
+Plug 'jelera/vim-javascript-syntax' ,{ 'for' : 'javascript' } 
+Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
+
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
