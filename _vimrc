@@ -16,7 +16,9 @@ Plug 'https://github.com/kovisoft/paredit'
 
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
-
+"
+" Searching
+Plugin 'mileszs/ack.vim'
 
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
@@ -93,6 +95,12 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "Vim Note settings
 let g:notes_directories = ['~/vimnotes']
 let g:notes_title_sync = 'rename_file'
+
+""""""""""""""""""""""""""""""""
+" Ack/Ag settings
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 """"""""""""""""""""""""""""""""
 " Python-mode
