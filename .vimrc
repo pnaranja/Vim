@@ -18,7 +18,7 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 "
 " Searching
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
