@@ -34,6 +34,8 @@ Plug 'venantius/vim-eastwood',  { 'for' : 'clojure' }
 Plug 'jelera/vim-javascript-syntax' ,{ 'for' : 'javascript' } 
 Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
 
+Plug 'wting/rust.vim' , { 'for' : 'rust' }
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
