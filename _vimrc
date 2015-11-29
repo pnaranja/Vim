@@ -1,7 +1,6 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
@@ -13,10 +12,13 @@ Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'https://github.com/kovisoft/paredit'
+Plug 'Valloric/YouCompleteMe' , { 'do': './install.sh' }
 
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
-"
+
+Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
+
 " Searching
 Plug 'mileszs/ack.vim'
 
@@ -33,6 +35,12 @@ Plug 'venantius/vim-eastwood',  { 'for' : 'clojure' }
 
 Plug 'jelera/vim-javascript-syntax' ,{ 'for' : 'javascript' } 
 Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
+Plug 'moll/vim-node' , { 'for' : 'javascript' }
+Plug 'othree/javascript-libraries-syntax.vim' , { 'for' : 'javascript' }
+Plug 'ternjs/tern_for_vim' , { 'for' : 'javascript' }
+
+Plug 'othree/html5.vim' , { 'for' : 'html' }
+Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
 
 Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
@@ -256,8 +264,8 @@ noremap <leader>gpsm :Git push origin master<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_python_checkers = ['flake8']
-let syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['flake8', 'eslint']
+let syntastic_python_checkers = ['flake8', 'eslint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
@@ -352,7 +360,7 @@ endif
 set ffs=unix,dos
 
 " Use Courier New font
-set guifont=courier_new:h13:b
+set guifont=courier_new:h15:b
 
 
 
