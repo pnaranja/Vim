@@ -12,7 +12,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'https://github.com/kovisoft/paredit'
-Plug 'Valloric/YouCompleteMe' , { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer' }
 
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
