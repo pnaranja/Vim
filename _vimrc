@@ -11,7 +11,7 @@ Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
-Plug 'https://github.com/kovisoft/paredit'
+Plug 'https://git::@github.com/kovisoft/paredit'
 
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
@@ -112,6 +112,13 @@ let g:notes_title_sync = 'rename_file'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+""""""""""""""""""""""""""""""""
+" Paredit settings
+au FileType javascript call PareditInitBuffer()
+au FileType haskell call PareditInitBuffer()
+au FileType python call PareditInitBuffer()
+au FileType rust call PareditInitBuffer()
 
 """"""""""""""""""""""""""""""""
 " Python-mode
