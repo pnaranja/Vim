@@ -13,6 +13,7 @@ Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer' }
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
@@ -45,6 +46,10 @@ Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
 Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
 Plug 'neovimhaskell/haskell-vim' , { 'for' : 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
 call plug#end()
 
@@ -121,6 +126,17 @@ au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 
+""""""""""""""""""""""""""""""""
+" YouCompleteMe settings
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+""""""""""""""""""""""""""""""""
+" Show types in completion suggestions
+let g:necoghc_enable_detailed_browse = 1
+
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 """"""""""""""""""""""""""""""""
 " Python-mode
 " Activate rope
@@ -276,6 +292,13 @@ noremap <leader>gpsm :Git push origin master<cr>
 let g:syntastic_python_checkers = ['flake8', 'eslint']
 let syntastic_python_checkers = ['flake8', 'eslint']
 
+" Haskell Lint
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell'] }
+noremap <silent> <leader>hl :SyntasticCheck hlint<CR>
+
+" Options for Haskell Syntax Check
+let g:syntastic_haskell_hdevtools_args = '-g-Wall'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -341,7 +364,9 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+
+" Set Leader timeout
+set tm=2000
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -429,6 +454,10 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
 if has('nvim')
+    " Use <Esc> to escape terminal insert mode
+    tnoremap <Esc> <C-\><C-n>
+
+    noremap <BS> <C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
     tnoremap <C-k> <C-\><C-n><C-w>k
     tnoremap <C-h> <C-\><C-n><C-w>h
