@@ -137,6 +137,21 @@ let g:necoghc_enable_detailed_browse = 1
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+""""""""""""""""""""""""""""""""
+" Haskell - ghc-mod, hdevtools
+
+" Reload
+map <silent> tu :call GHC_BrowseAll()<CR>
+" Type Lookup
+map <silent> tw :call GHC_ShowType(1)<CR>"
+
+" Get Type info
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+
+
 """"""""""""""""""""""""""""""""
 " Python-mode
 " Activate rope
@@ -240,12 +255,13 @@ noremap <F7> :PyLintAuto<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Run Python and Jython script
-noremap <F3> :!python %<CR>
-noremap <F4> :!jython %<CR>
+au FileType python noremap <F3> :!python %<CR>
+au FileType python noremap <F4> :!jython %<CR>
 
 ""Run PDB on Python script
-noremap <F6> :!python -i -u -m pdb %<CR>
-"
+au FileType python noremap <F6> :!python -i -u -m pdb %<CR>
+
+
 ""Run FSharp Interactive and Compilation
 noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
@@ -293,8 +309,9 @@ let g:syntastic_python_checkers = ['flake8', 'eslint']
 let syntastic_python_checkers = ['flake8', 'eslint']
 
 " Haskell Lint
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell'] }
+let g:syntastic_mode_map = { 'mode': 'active' }
 noremap <silent> <leader>hl :SyntasticCheck hlint<CR>
+let g:syntastic_auto_loc_list=1
 
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
