@@ -316,6 +316,9 @@ let g:syntastic_auto_loc_list=1
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
 
+" Reset Syntastic lints
+noremap <leader>sr :SyntasticReset<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
