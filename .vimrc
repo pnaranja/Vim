@@ -1,6 +1,7 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
@@ -11,14 +12,14 @@ Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
+Plug 'godlygeek/tabular'
 Plug 'https://git::@github.com/kovisoft/paredit'
-Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer' }
 
+" Vim Notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
-
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 
 " Searching
 Plug 'mileszs/ack.vim'
@@ -150,6 +151,14 @@ map <silent> tw :call GHC_ShowType(1)<CR>"
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+
+""""""""""""""""""""""""""""""""
+" Tabular (for Haskell)
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
 
 
 """"""""""""""""""""""""""""""""
@@ -295,11 +304,8 @@ noremap <leader>gc :Gcommit<CR>
 
 " Fetch, Merge, Pull and Push
 noremap <leader>gfm :Git fetch origin master<cr>
-
 noremap <leader>gmm :Git merge origin master<cr>
-
 noremap <leader>gplm :Git pull origin master<cr>
-
 noremap <leader>gpsm :Git push origin master<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,16 +314,19 @@ noremap <leader>gpsm :Git push origin master<cr>
 let g:syntastic_python_checkers = ['flake8', 'eslint']
 let syntastic_python_checkers = ['flake8', 'eslint']
 
-" Haskell Lint
-let g:syntastic_mode_map = { 'mode': 'active' }
-noremap <silent> <leader>hl :SyntasticCheck hlint<CR>
-let g:syntastic_auto_loc_list=1
-
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
 
-" Reset Syntastic lints
-noremap <leader>sr :SyntasticReset<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" Toggle Syntastic
+noremap <leader>st :SyntasticToggleMode<CR>
+
+" Show Error list
+noremap <leader>sl :Errors<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis

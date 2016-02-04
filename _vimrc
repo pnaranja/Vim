@@ -1,6 +1,7 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
@@ -11,12 +12,14 @@ Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
+Plug 'godlygeek/tabular'
 Plug 'https://git::@github.com/kovisoft/paredit'
+Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'Shougo/neocomplete'
 
+" Vim Notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
-
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 
 " Searching
 Plug 'mileszs/ack.vim'
@@ -44,6 +47,10 @@ Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
 Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
 Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
 call plug#end()
 
@@ -119,6 +126,32 @@ au FileType javascript call PareditInitBuffer()
 au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
+
+""""""""""""""""""""""""""""""""
+" ghc-mod (for Haskell)
+au FileType haskell let g:ghcmod_use_basedir = getcwd()
+noremap <silent> tw :GhcModTypeInsert<CR>
+noremap <silent> ts :GhcModSplitFunCase<CR>
+noremap <silent> tq :GhcModType<CR>
+noremap <silent> te :GhcModTypeClear<CR>
+
+""""""""""""""""""""""""""""""""
+" AutoCompletion
+let g:neocomplete#enable_at_startup = 1
+
+" Show types in completion suggestions
+let g:necoghc_enable_detailed_browse = 1
+
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+""""""""""""""""""""""""""""""""
+" Tabular (for Haskell)
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -262,11 +295,8 @@ noremap <leader>gc :Gcommit<CR>
 
 " Fetch, Merge, Pull and Push
 noremap <leader>gfm :Git fetch origin master<cr>
-
 noremap <leader>gmm :Git merge origin master<cr>
-
 noremap <leader>gplm :Git pull origin master<cr>
-
 noremap <leader>gpsm :Git push origin master<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -274,6 +304,20 @@ noremap <leader>gpsm :Git push origin master<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_checkers = ['flake8', 'eslint']
 let syntastic_python_checkers = ['flake8', 'eslint']
+
+" Options for Haskell Syntax Check
+let g:syntastic_haskell_hdevtools_args = '-g-Wall'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" Toggle Syntastic
+noremap <leader>st :SyntasticToggleMode<CR>
+
+" Show Error list
+noremap <leader>sl :Errors<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
