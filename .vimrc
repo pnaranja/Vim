@@ -15,7 +15,7 @@ Plug 'bling/vim-airline'
 Plug 'godlygeek/tabular'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer' }
+Plug 'Shougo/deoplete.nvim'
 
 " Vim Notes
 Plug 'xolox/vim-notes'
@@ -127,13 +127,11 @@ au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 
-""""""""""""""""""""""""""""""""
-" YouCompleteMe settings
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 """"""""""""""""""""""""""""""""
-" Show types in completion suggestions
-let g:necoghc_enable_detailed_browse = 1
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
 
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
