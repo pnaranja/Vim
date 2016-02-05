@@ -134,9 +134,15 @@ au FileType rust call PareditInitBuffer()
 
 
 """"""""""""""""""""""""""""""""
-" deoplete
-let g:deoplete#enable_at_startup = 1
+" AutoCompletion
 
+if has('nvim')
+    " deoplete
+    let g:deoplete#enable_at_startup = 1
+else
+    " neocomplete
+    let g:neocomplete#enable_at_startup = 1
+endif
 
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
@@ -151,6 +157,7 @@ map <silent> tu :call GHC_BrowseAll()<CR>
 map <silent> tw :call GHC_ShowType(1)<CR>"
 
 " Get Type info
+au FileType haskell let g:ghcmod_use_basedir = getcwd()
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
