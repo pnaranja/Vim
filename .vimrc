@@ -15,7 +15,12 @@ Plug 'bling/vim-airline'
 Plug 'godlygeek/tabular'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/deoplete.nvim'
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+else
+    Plug 'Shougo/neocomplete'
+endif
 
 " Vim Notes
 Plug 'xolox/vim-notes'
