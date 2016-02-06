@@ -127,15 +127,6 @@ au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 
 """"""""""""""""""""""""""""""""
-" Haskell - ghc-mod
-" au FileType haskell let g:ghcmod_use_basedir = getcwd()
-noremap <silent> gi :GhcModTypeInsert<CR>
-noremap <silent> gs :GhcModSplitFunCase<CR>
-noremap <silent> gt :GhcModType<CR>
-noremap <silent> gcl :GhcModTypeClear<CR>
-noremap <silent> gck :GhcModCheck<CR>
-
-""""""""""""""""""""""""""""""""
 " AutoCompletion
 let g:neocomplete#enable_at_startup = 1
 
@@ -145,6 +136,14 @@ let g:necoghc_enable_detailed_browse = 1
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+""""""""""""""""""""""""""""""""
+" Haskell - ghc-mod
+noremap <silent> gi :GhcModTypeInsert<CR>
+noremap <silent> gs :GhcModSplitFunCase<CR>
+noremap <silent> gt :GhcModType<CR>
+noremap <silent> gcl :GhcModTypeClear<CR>
+noremap <silent> gck :GhcModCheck<CR>
 
 """"""""""""""""""""""""""""""""
 " Tabular (for Haskell)

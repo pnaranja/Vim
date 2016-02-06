@@ -151,12 +151,13 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 """"""""""""""""""""""""""""""""
 " Haskell - ghc-mod, hdevtools
 
-" Reload
-map <silent> tu :call GHC_BrowseAll()<CR>
-" Type Lookup
-map <silent> tw :call GHC_ShowType(1)<CR>"
+noremap <silent> gi :GhcModTypeInsert<CR>
+noremap <silent> gs :GhcModSplitFunCase<CR>
+noremap <silent> gt :GhcModType<CR>
+noremap <silent> gcl :GhcModTypeClear<CR>
+noremap <silent> gck :GhcModCheck<CR>
 
-" Get Type info
+" Get Type info using hdevtools
 au FileType haskell let g:ghcmod_use_basedir = getcwd()
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
