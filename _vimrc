@@ -50,7 +50,6 @@ Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell' }
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
-Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
 call plug#end()
 
@@ -128,12 +127,13 @@ au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 
 """"""""""""""""""""""""""""""""
-" ghc-mod (for Haskell)
-au FileType haskell let g:ghcmod_use_basedir = getcwd()
-noremap <silent> tw :GhcModTypeInsert<CR>
-noremap <silent> ts :GhcModSplitFunCase<CR>
-noremap <silent> tq :GhcModType<CR>
-noremap <silent> te :GhcModTypeClear<CR>
+" Haskell - ghc-mod
+" au FileType haskell let g:ghcmod_use_basedir = getcwd()
+noremap <silent> gi :GhcModTypeInsert<CR>
+noremap <silent> gs :GhcModSplitFunCase<CR>
+noremap <silent> gt :GhcModType<CR>
+noremap <silent> gcl :GhcModTypeClear<CR>
+noremap <silent> gck :GhcModCheck<CR>
 
 """"""""""""""""""""""""""""""""
 " AutoCompletion
@@ -142,7 +142,8 @@ let g:neocomplete#enable_at_startup = 1
 " Show types in completion suggestions
 let g:necoghc_enable_detailed_browse = 1
 
-let g:haskellmode_completion_ghc = 1
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 """"""""""""""""""""""""""""""""
