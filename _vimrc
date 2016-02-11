@@ -13,6 +13,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'godlygeek/tabular'
+Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc', { 'do': 'make' }
 Plug 'Shougo/neocomplete'
@@ -127,23 +128,37 @@ au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 
 """"""""""""""""""""""""""""""""
+" Haskell - ghc-mod
+" au FileType haskell let g:ghcmod_use_basedir = getcwd()
+noremap <silent> gi :GhcModTypeInsert<CR>
+noremap <silent> gs :GhcModSplitFunCase<CR>
+noremap <silent> gt :GhcModType<CR>
+noremap <silent> gcl :GhcModTypeClear<CR>
+noremap <silent> gck :GhcModCheck<CR>
+
+""""""""""""""""""""""""""""""""
+" SuperTab
+
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+
+if has("gui_running")
+  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+  if has("unix")
+    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+  endif
+endif
+
+""""""""""""""""""""""""""""""""
 " AutoCompletion
 let g:neocomplete#enable_at_startup = 1
 
 " Show types in completion suggestions
 let g:necoghc_enable_detailed_browse = 1
 
-" Disable haskell-vim omnifunc
-let g:haskellmode_completion_ghc = 0
+" Configure necoghc to be the default tab completion
+let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-""""""""""""""""""""""""""""""""
-" Haskell - ghc-mod
-noremap <silent> gi :GhcModTypeInsert<CR>
-noremap <silent> gs :GhcModSplitFunCase<CR>
-noremap <silent> gt :GhcModType<CR>
-noremap <silent> gcl :GhcModTypeClear<CR>
-noremap <silent> gck :GhcModCheck<CR>
 
 """"""""""""""""""""""""""""""""
 " Tabular (for Haskell)
