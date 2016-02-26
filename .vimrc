@@ -180,7 +180,7 @@ au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 " Tabular (for Haskell)
 let g:haskell_tabular = 1
 
-vmap a= :Tabularize /=<CR>
+vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
 vmap a; :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
@@ -335,8 +335,8 @@ noremap <leader>gpsm :Git push origin master<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_python_checkers = ['flake8', 'eslint']
-let syntastic_python_checkers = ['flake8', 'eslint']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
