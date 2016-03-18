@@ -338,14 +338,17 @@ noremap <leader>sl :Errors<CR>
 " => Rainbow Parenthesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
-let rainbow_active = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add Current Working Directory
 let g:airline_section_b = '%{getcwd()}'
-let airline_section_b = '%{getcwd()}'
+
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
