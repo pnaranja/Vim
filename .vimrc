@@ -438,9 +438,10 @@ if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
+colorscheme solarized
 endif
 
-colorscheme solarized
+colorscheme 256-grayvim
 
 " Set utf8 as standard encoding and en_US as the standard language
 " set encoding=utf8
