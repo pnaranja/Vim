@@ -25,6 +25,9 @@ Plug 'xolox/vim-misc'
 " Searching
 Plug 'mileszs/ack.vim'
 
+" AutoSave
+Plug '907th/vim-auto-save'
+
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
 
@@ -51,6 +54,7 @@ Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell' }
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
 call plug#end()
 
@@ -160,6 +164,12 @@ let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
+""""""""""""""""""""""""""""""""
+" AutoSave
+let g:auto_save = 1
+let g:auto_save_silent = 1
+let updatetime=500
+"
 """"""""""""""""""""""""""""""""
 " Tabular (for Haskell)
 let g:haskell_tabular = 1

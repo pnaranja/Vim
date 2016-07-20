@@ -30,6 +30,9 @@ Plug 'xolox/vim-misc'
 " Searching
 Plug 'mileszs/ack.vim'
 
+" AutoSave
+Plug '907th/vim-auto-save'
+
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
 
@@ -157,6 +160,14 @@ else
     let g:neocomplete#enable_at_startup = 1
 endif
 
+""""""""""""""""""""""""""""""""
+" AutoSave
+let g:auto_save = 1
+let g:auto_save_silent = 1
+let updatetime=500
+
+""""""""""""""""""""""""""""""""
+
 " Configure necoghc to be the default tab completion
 let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -181,7 +192,7 @@ au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 let g:haskell_tabular = 1
 
 vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
-vmap a; :Tabularize /::<CR>
+vmap a: :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
 
