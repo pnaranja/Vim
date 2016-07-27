@@ -1,5 +1,9 @@
 set nocompatible
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -18,7 +22,7 @@ Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 else
     Plug 'Shougo/neocomplete'
 endif
@@ -196,7 +200,7 @@ vmap a- :Tabularize /-><CR>
 
 """"""""""""""""""""""""""""""""
 " Elm format
-let g:elm_format_autosave = 1
+let g:elm_format_autosave = 0
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -691,3 +695,4 @@ function! RenameFile()
     endif
 endfunction
 map <leader>r :call RenameFile()<cr>
+
