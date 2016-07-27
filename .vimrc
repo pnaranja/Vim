@@ -61,6 +61,8 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
+Plug 'elmcast/elm-vim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,9 +97,6 @@ set autoread
 
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
-
-" Fast saving
-noremap <leader>w :w<cr>
 
 " Select all
 noremap <leader>sa 1GVG
@@ -195,6 +194,9 @@ vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
 vmap a: :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
+""""""""""""""""""""""""""""""""
+" Elm format
+let g:elm_format_autosave = 1
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -531,8 +533,6 @@ if has('nvim')
     tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
-" " Open new buffer
-noremap <leader>bn :enew<cr>
 " " Close the current buffer
 noremap bd :bd<cr>
 " " Close all the buffers
