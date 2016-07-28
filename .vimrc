@@ -444,6 +444,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
+set tm=500
 
 " Set Leader timeout
 set tm=2000

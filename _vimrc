@@ -18,6 +18,15 @@ Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc', { 'do': 'make' }
 Plug 'Shougo/neocomplete'
 
+if has('nvim')
+    function! DoRemote(arg)
+      UpdateRemotePlugins
+    endfunction
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+else
+    Plug 'Shougo/neocomplete'
+endif
+
 " Vim Notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
@@ -56,6 +65,8 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
+Plug 'elmcast/elm-vim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,9 +101,6 @@ set autoread
 
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
-
-" Fast saving
-noremap <leader>w :w<cr>
 
 " Select all
 noremap <leader>sa 1GVG
@@ -155,7 +163,25 @@ endif
 
 """"""""""""""""""""""""""""""""
 " AutoCompletion
-let g:neocomplete#enable_at_startup = 1
+if has('nvim')
+    " deoplete
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_ignore_case = 1  "let matcher ignore 
+    let g:deoplete#enable_smart_case = 1   "smart case
+    let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#omni#input_patterns.elm = ['.']
+else
+    " neocomplete
+    let g:neocomplete#enable_at_startup = 1
+endif
+
+""""""""""""""""""""""""""""""""
+" AutoSave
+let g:auto_save = 1
+let g:auto_save_silent = 1
+let updatetime=500
+
+""""""""""""""""""""""""""""""""
 
 " Show types in completion suggestions
 let g:necoghc_enable_detailed_browse = 1
@@ -177,6 +203,10 @@ let g:haskell_tabular = 1
 vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
 vmap a: :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
+
+""""""""""""""""""""""""""""""""
+" Elm format
+let g:elm_format_autosave = 0
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -333,6 +363,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
 
+" For Elm
+let g:elm_syntastic_show_warnings = 0
+let g:elm_detailed_complete = 0
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
@@ -413,6 +447,9 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+" Set Leader timeout
+set tm=2000
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -499,14 +536,16 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
 if has('nvim')
+    " Use <Esc> to escape terminal insert mode
+    tnoremap <Esc> <C-\><C-n>
+
+    noremap <BS> <C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
     tnoremap <C-k> <C-\><C-n><C-w>k
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
-" " Open new buffer
-noremap <leader>bn :enew<cr>
 " " Close the current buffer
 noremap bd :bd<cr>
 " " Close all the buffers
