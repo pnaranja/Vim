@@ -1,9 +1,5 @@
 set nocompatible
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -22,6 +18,9 @@ Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has('nvim')
+    function! DoRemote(arg)
+      UpdateRemotePlugins
+    endfunction
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 else
     Plug 'Shougo/neocomplete'
@@ -158,6 +157,10 @@ endif
 if has('nvim')
     " deoplete
     let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_ignore_case = 1  "let matcher ignore case
+    let g:deoplete#enable_smart_case = 1   "smart case
+    let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#omni#input_patterns.elm = ['.']
 else
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
@@ -357,6 +360,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 " Options for Haskell Syntax Check
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
+
+" For Elm
+let g:elm_syntastic_show_warnings = 0
+let g:elm_detailed_complete = 0
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
