@@ -30,6 +30,10 @@ endif
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Searching
 Plug 'mileszs/ack.vim'
 
@@ -94,6 +98,9 @@ filetype indent on
 " Recognize jython files as python
 au BufNewFile,BufRead *.jy set filetype=python
 
+" Recognize Markdown and disable folding
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:vim_markdown_folding_disabled = 1
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -137,6 +144,8 @@ au FileType javascript call PareditInitBuffer()
 au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
+au FileType elm call PareditInitBuffer()
+
 
 """"""""""""""""""""""""""""""""
 " SuperTab
@@ -160,7 +169,6 @@ if has('nvim')
     let g:deoplete#enable_ignore_case = 1  "let matcher ignore case
     let g:deoplete#enable_smart_case = 1   "smart case
     let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni#input_patterns.elm = ['.']
 else
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
@@ -202,8 +210,13 @@ vmap a: :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
 """"""""""""""""""""""""""""""""
-" Elm format
+" Elm format and commands
 let g:elm_format_autosave = 0
+let g:elm_setup_keybindings = 0
+noremap <leader>em :ElmMake<CR>
+noremap <leader>er :ElmRepl<CR>
+noremap <leader>ed :ElmShowDocs<CR>
+noremap <leader>ef :ElmFormat<CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
