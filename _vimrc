@@ -31,6 +31,10 @@ endif
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Searching
 Plug 'mileszs/ack.vim'
 
@@ -95,6 +99,9 @@ filetype indent on
 " Recognize jython files as python
 au BufNewFile,BufRead *.jy set filetype=python
 
+" Recognize Markdown and disable folding
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:vim_markdown_folding_disabled = 1
 
 " Set to auto read when a file is changed from the outside
 set autoread
