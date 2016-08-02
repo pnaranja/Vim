@@ -212,8 +212,13 @@ vmap a: :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
 """"""""""""""""""""""""""""""""
-" Elm format
+" Elm format and commands
 let g:elm_format_autosave = 0
+let g:elm_setup_keybindings = 0
+noremap <leader>em :ElmMake<CR>
+noremap <leader>er :ElmRepl<CR>
+noremap <leader>ed :ElmShowDocs<CR>
+noremap <leader>ef :ElmFormat<CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
