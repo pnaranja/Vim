@@ -218,7 +218,7 @@ let g:elm_setup_keybindings = 0
 noremap <leader>em :ElmMake<CR>
 noremap <leader>er :ElmRepl<CR>
 noremap <leader>ed :ElmShowDocs<CR>
-noremap <leader>ef :ElmFormat<CR>
+noremap <leader>ef  :!elm-format % --yes<CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
