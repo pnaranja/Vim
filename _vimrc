@@ -5,6 +5,7 @@ Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 Plug 'rosenfeld/conque-term' 
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fugitive'
