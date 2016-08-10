@@ -338,9 +338,12 @@ noremap <F9> :!fsc %<CR>
 noremap <leader>e :%Eval<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP settings
+" => CtrlP and CtrlP Funky settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode=''
+
+nnoremap <Leader>f :CtrlPFunky<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ConqueTerm
