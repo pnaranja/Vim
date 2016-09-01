@@ -69,7 +69,7 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
-Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
 call plug#end()
 
@@ -721,3 +721,21 @@ function! RenameFile()
 endfunction
 map <leader>r :call RenameFile()<cr>
 
+" From https://github.com/alx741/vim-hindent
+" Set for 'johan-tibell style'
+function! Hindent()
+    if !executable("hindent")
+        echom "Hindent not found in $PATH, did you installed it? (stack install hindent)"
+        return
+    endif
+
+    silent! silent exec "!cat % | hindent --style johan-tibell"
+    exec ':redraw!'
+
+    if v:shell_error
+        echom "Hindent: Parsing error"
+    else
+        silent! exec "%!hindent --style johan-tibell"
+    endif
+endfunction
+map <leader>hf :call Hindent()<cr>
