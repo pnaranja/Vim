@@ -722,20 +722,21 @@ endfunction
 map <leader>r :call RenameFile()<cr>
 
 " From https://github.com/alx741/vim-hindent
-" Set for 'johan-tibell style'
+" Requires hindent version 5+
 function! Hindent()
     if !executable("hindent")
         echom "Hindent not found in $PATH, did you installed it? (stack install hindent)"
         return
     endif
 
-    silent! silent exec "!cat % | hindent --style johan-tibell"
+    silent! silent exec "!cat % | hindent"
     exec ':redraw!'
 
     if v:shell_error
         echom "Hindent: Parsing error"
     else
-        silent! exec "%!hindent --style johan-tibell"
+        silent! exec "%!hindent"
+        exec ':$'
     endif
 endfunction
 map <leader>hf :call Hindent()<cr>
