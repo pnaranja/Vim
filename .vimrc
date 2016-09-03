@@ -1,7 +1,6 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
@@ -10,6 +9,7 @@ Plug 'rosenfeld/conque-term'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
@@ -116,9 +116,6 @@ noremap <leader>sa 1GVG
 
 " Quick open of the vimrc file
 noremap <leader>v :e $MYVIMRC<CR>
-
-" Use 'F2' to activate NerdTree
-noremap <F2> :NERDTreeToggle<CR>
 
 " Use 'F5' to reload your file and go to the bottom of screen
 noremap <F5> :e<CR>G
