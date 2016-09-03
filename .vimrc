@@ -477,7 +477,7 @@ if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
-colorscheme solarized
+colorscheme atom
 endif
 
 colorscheme 256-grayvim
@@ -489,7 +489,16 @@ colorscheme 256-grayvim
 set ffs=unix,dos
 
 " Use Courier New font
-set guifont=courier_new:h15:b
+set guifont=courier_new:h19:b
+
+" For Neovim-dot-app settings
+if exists('neovim_dot_app')
+    set guioptions-=T
+    set guioptions+=e
+    set guitablabel=%M\ %t
+colorscheme atom
+:call MacSetFont("courier", 17)
+endif
 
 
 
