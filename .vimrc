@@ -345,6 +345,7 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 
 if executable('ag')
+ set grepprg=ag\ —-nogroup\ —-nocolor
  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
  let g:ctrlp_use_caching = 0
 endif
@@ -354,7 +355,6 @@ endif
 """"""""""""""""""""""""""""""""
 if executable('ag')
  let g:ackprg = 'ag --vimgrep'
- set grepprg=ag\ —-nogroup\ —-nocolor
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
