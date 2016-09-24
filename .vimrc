@@ -5,9 +5,7 @@ Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
-Plug 'rosenfeld/conque-term' 
 Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'flazz/vim-colorschemes'
@@ -27,6 +25,10 @@ else
     Plug 'Shougo/neocomplete'
 endif
 
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " Vim Notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
@@ -40,6 +42,7 @@ Plug 'mileszs/ack.vim'
 
 " AutoSave
 Plug '907th/vim-auto-save'
+
 
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
@@ -130,11 +133,6 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:notes_directories = ['~/vimnotes']
 let g:notes_title_sync = 'rename_file'
 
-""""""""""""""""""""""""""""""""
-" Ack/Ag settings
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 """"""""""""""""""""""""""""""""
 " Paredit settings
@@ -338,16 +336,20 @@ noremap <leader>e :%Eval<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode=''
 
+let g:ctrlp_custom_ignore = {
+ \ 'dir': '\.git$\|\.yardoc\|bower_components|node_modules|public$|log\|tmp$',
+ \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+ \ }
+
 nnoremap <Leader>f :CtrlPFunky<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ConqueTerm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("unix")
-    noremap <leader>ct :ConqueTerm bash<cr>
-elseif has("win32")
-    noremap <leader>ct :ConqueTerm cmd.exe<cr>
+""""""""""""""""""""""""""""""""
+" => Ack/Ag settings
+""""""""""""""""""""""""""""""""
+if executable('ag')
+ let g:ackprg = 'ag --vimgrep'
+ set grepprg=ag\ —-nogroup\ —-nocolor
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
