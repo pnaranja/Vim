@@ -28,6 +28,7 @@ endif
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 
 " Vim Notes
 Plug 'xolox/vim-notes'
