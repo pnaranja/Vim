@@ -96,6 +96,9 @@ set history=700
 " Enable line numbers
 set nu
 
+" Enable relative line numbers
+set rnu
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
