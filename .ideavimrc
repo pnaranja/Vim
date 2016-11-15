@@ -1,0 +1,7 @@
+set incsearch
+set hlsearch
+set number
+set relativenumber
+
+set history=1000
+set scrolloff=7
