@@ -141,7 +141,6 @@ let g:notes_title_sync = 'rename_file'
 """"""""""""""""""""""""""""""""
 " Paredit settings
 au FileType javascript call PareditInitBuffer()
-au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
 au FileType elm call PareditInitBuffer()
