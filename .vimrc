@@ -199,7 +199,7 @@ au FileType haskell let g:ghcmod_use_basedir = getcwd()
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
-
+"
 """"""""""""""""""""""""""""""""
 " Tabular (for Haskell)
 let g:haskell_tabular = 1
@@ -483,7 +483,7 @@ syntax on
 
 
 " Set extra options when running in GUI mode
-if has("gui_running")
+if has("gui_running") || has("gui_vimr")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
