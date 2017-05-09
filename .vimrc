@@ -151,7 +151,7 @@ au FileType elm call PareditInitBuffer()
 
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
-if has("gui_running")
+if has("gui_running") || has("gui_vimr")
   imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
 else " no gui
   if has("unix")
@@ -231,8 +231,6 @@ noremap <leader>ef :ElmFormat<CR>
 " ]]            Jump on next class or function (normal, visual, operator modes)
 " [M            Jump on previous class or method (normal, visual, operator modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
-
-" Turning off rope so Jedi Vim can be used for autocomplete
 let g:pymode_rope = 0
 let pymode_rope = 0
 
@@ -481,15 +479,6 @@ set tm=2000
 syntax enable
 syntax on
 
-
-" Set extra options when running in GUI mode
-if has("gui_running") || has("gui_vimr")
-    set guioptions-=T
-    set guioptions+=e
-    set guitablabel=%M\ %t
-colorscheme atom
-endif
-
 colorscheme 256-grayvim
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -501,15 +490,13 @@ set ffs=unix,dos
 " Use Courier New font
 set guifont=courier_new:h19:b
 
-" For Neovim-dot-app settings
-if exists('neovim_dot_app')
+" Set extra options when running in GUI mode
+if has("gui_running") || has("gui_vimr")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
 colorscheme atom
-:call MacSetFont("courier", 17)
 endif
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
