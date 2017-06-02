@@ -1,23 +1,19 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
-Plug 'rosenfeld/conque-term' 
 Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
-Plug 'godlygeek/tabular'
 Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
-Plug 'Shougo/vimproc', { 'do': 'make' }
-Plug 'Shougo/neocomplete'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has('nvim')
     function! DoRemote(arg)
@@ -28,12 +24,12 @@ else
     Plug 'Shougo/neocomplete'
 endif
 
-" Vim Notes
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 
 " Markdown
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " Searching
@@ -41,6 +37,7 @@ Plug 'mileszs/ack.vim'
 
 " AutoSave
 Plug '907th/vim-auto-save'
+
 
 " For particular programming languages
 Plug 'klen/python-mode' , { 'for' : 'python' }
@@ -64,13 +61,13 @@ Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
 
 Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
-Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell' }
+Plug 'neovimhaskell/haskell-vim' , { 'for' : 'haskell' }
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
 
-Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
 call plug#end()
 
@@ -121,9 +118,6 @@ noremap <leader>sa 1GVG
 " Quick open of the vimrc file
 noremap <leader>v :e $MYVIMRC<CR>
 
-" Use 'F2' to activate NerdTree
-noremap <F2> :NERDTreeToggle<CR>
-
 " Use 'F5' to reload your file and go to the bottom of screen
 noremap <F5> :e<CR>G
 
@@ -137,34 +131,21 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:notes_directories = ['~/vimnotes']
 let g:notes_title_sync = 'rename_file'
 
-""""""""""""""""""""""""""""""""
-" Ack/Ag settings
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 """"""""""""""""""""""""""""""""
 " Paredit settings
 au FileType javascript call PareditInitBuffer()
-au FileType haskell call PareditInitBuffer()
 au FileType python call PareditInitBuffer()
 au FileType rust call PareditInitBuffer()
+au FileType elm call PareditInitBuffer()
 
-""""""""""""""""""""""""""""""""
-" Haskell - ghc-mod
-" au FileType haskell let g:ghcmod_use_basedir = getcwd()
-noremap <silent> gi :GhcModTypeInsert<CR>
-noremap <silent> gs :GhcModSplitFunCase<CR>
-noremap <silent> gt :GhcModType<CR>
-noremap <silent> gcl :GhcModTypeClear<CR>
-noremap <silent> gck :GhcModCheck<CR>
 
 """"""""""""""""""""""""""""""""
 " SuperTab
 
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
-if has("gui_running")
+if has("gui_running") || has("gui_vimr")
   imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
 else " no gui
   if has("unix")
@@ -174,13 +155,13 @@ endif
 
 """"""""""""""""""""""""""""""""
 " AutoCompletion
+
 if has('nvim')
     " deoplete
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_ignore_case = 1  "let matcher ignore 
+    let g:deoplete#enable_ignore_case = 1  "let matcher ignore case
     let g:deoplete#enable_smart_case = 1   "smart case
     let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni#input_patterns.elm = ['.']
 else
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
@@ -194,26 +175,25 @@ let updatetime=500
 
 """"""""""""""""""""""""""""""""
 
-" Show types in completion suggestions
-let g:necoghc_enable_detailed_browse = 1
-
 " Configure necoghc to be the default tab completion
 let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 """"""""""""""""""""""""""""""""
-" AutoSave
-let g:auto_save = 1
-let g:auto_save_silent = 1
-let updatetime=500
-"
-""""""""""""""""""""""""""""""""
-" Tabular (for Haskell)
-let g:haskell_tabular = 1
+" Haskell - ghc-mod, hdevtools
 
-vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
-vmap a: :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
+noremap <silent> gi :GhcModTypeInsert<CR>
+noremap <silent> gs :GhcModSplitFunCase<CR>
+noremap <silent> gt :GhcModType<CR>
+noremap <silent> gcl :GhcModTypeClear<CR>
+noremap <silent> gck :GhcModCheck<CR>
+
+" Get Type info using hdevtools
+au FileType haskell let g:ghcmod_use_basedir = getcwd()
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+"
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
@@ -222,7 +202,7 @@ let g:elm_setup_keybindings = 0
 noremap <leader>em :ElmMake<CR>
 noremap <leader>er :ElmRepl<CR>
 noremap <leader>ed :ElmShowDocs<CR>
-noremap <leader>ef  :!elm-format % --yes<CR>
+noremap <leader>ef :ElmFormat<CR>
 
 """"""""""""""""""""""""""""""""
 " Python-mode
@@ -238,8 +218,6 @@ noremap <leader>ef  :!elm-format % --yes<CR>
 " ]]            Jump on next class or function (normal, visual, operator modes)
 " [M            Jump on previous class or method (normal, visual, operator modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
-
-" Turning off rope so Jedi Vim can be used for autocomplete
 let g:pymode_rope = 0
 let pymode_rope = 0
 
@@ -327,12 +305,13 @@ noremap <F7> :PyLintAuto<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Run Python and Jython script
-noremap <F3> :!python %<CR>
-noremap <F4> :!jython %<CR>
+au FileType python noremap <F3> :!python %<CR>
+au FileType python noremap <F4> :!jython %<CR>
 
 ""Run PDB on Python script
-noremap <F6> :!python -i -u -m pdb %<CR>
-"
+au FileType python noremap <F6> :!python -i -u -m pdb %<CR>
+
+
 ""Run FSharp Interactive and Compilation
 noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
@@ -345,16 +324,25 @@ noremap <leader>e :%Eval<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode=''
 
+let g:ctrlp_custom_ignore = {
+ \ 'dir': '\.git$\|\.yardoc\|bower_components|node_modules|public$|log\|tmp$',
+ \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+ \ }
+
 nnoremap <Leader>f :CtrlPFunky<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ConqueTerm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("unix")
-    noremap <leader>ct :ConqueTerm bash<cr>
-elseif has("win32")
-    noremap <leader>ct :ConqueTerm cmd.exe<cr>
+if executable('ag')
+ set grepprg=ag\ —-nogroup\ —-nocolor
+ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+ let g:ctrlp_use_caching = 0
+endif
+
+""""""""""""""""""""""""""""""""
+" => Ack/Ag settings
+""""""""""""""""""""""""""""""""
+if executable('ag')
+ let g:ackprg = 'ag --vimgrep'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -478,15 +466,7 @@ set tm=2000
 syntax enable
 syntax on
 
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set guitablabel=%M\ %t
-endif
-
-colorscheme solarized
+colorscheme 256-grayvim
 
 " Set utf8 as standard encoding and en_US as the standard language
 " set encoding=utf8
@@ -495,8 +475,15 @@ colorscheme solarized
 set ffs=unix,dos
 
 " Use Courier New font
-set guifont=courier_new:h15:b
+set guifont=courier_new:h19:b
 
+" Set extra options when running in GUI mode
+if has("gui_running") || has("gui_vimr")
+    set guioptions-=T
+    set guioptions+=e
+    set guitablabel=%M\ %t
+colorscheme atom
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -527,7 +514,7 @@ set wrap "Wrap lines
 " " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-	
+
 """"""""""""""""""""""""""""""
 " => Status line
 " """"""""""""""""""""""""""""""
@@ -723,3 +710,23 @@ function! RenameFile()
     endif
 endfunction
 map <leader>r :call RenameFile()<cr>
+
+" From https://github.com/alx741/vim-hindent
+" Requires hindent version 5+
+function! Hindent()
+    if !executable("hindent")
+        echom "Hindent not found in $PATH, did you installed it? (stack install hindent)"
+        return
+    endif
+
+    silent! silent exec "!cat % | hindent"
+    exec ':redraw!'
+
+    if v:shell_error
+        echom "Hindent: Parsing error"
+    else
+        silent! exec "%!hindent"
+        exec ':$'
+    endif
+endfunction
+map <leader>hf :call Hindent()<cr>

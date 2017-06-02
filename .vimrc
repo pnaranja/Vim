@@ -1,7 +1,7 @@
 set nocompatible
 
 call plug#begin('~/.vim/bundle')
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
@@ -11,7 +11,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
-Plug 'godlygeek/tabular'
 Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -30,12 +29,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jreybert/vimagit'
 
-" Vim Notes
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
-
 " Markdown
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " Searching
@@ -200,13 +194,6 @@ au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 "
-""""""""""""""""""""""""""""""""
-" Tabular (for Haskell)
-let g:haskell_tabular = 1
-
-vmap a= :Tabularize /\ =\ <CR> " For standalone '=' so it does not count '=='
-vmap a: :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
