@@ -474,9 +474,6 @@ colorscheme 256-grayvim
 " Use Unix as the standard file type
 set ffs=unix,dos
 
-" Use Courier New font
-set guifont=courier_new:h19:b
-
 " Set extra options when running in GUI mode
 if has("gui_running") || has("gui_vimr")
     set guioptions-=T
