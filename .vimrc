@@ -125,6 +125,7 @@ noremap <F5> :e<CR>G
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NEOVIM settings
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set inccommand=split
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Vim Note settings
