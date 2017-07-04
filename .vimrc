@@ -237,6 +237,10 @@ let pymode_lint_checker = "pyflakes"
 let g:pymode_lint_write = 1
 let pymode_lint_write = 1
 
+"Ale Linting
+let g:ale_lint_on_text_changed = "normal"
+let g:ale_lint_delay = 3000
+
 " Support virtualenv
 let g:pymode_virtualenv = 1
 let pymode_virtualenv = 1
