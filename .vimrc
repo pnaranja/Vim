@@ -13,6 +13,7 @@ Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
+Plug 'mklabs/split-term.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has('nvim')
@@ -61,11 +62,9 @@ Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
 
 Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
-Plug 'neovimhaskell/haskell-vim' , { 'for' : 'haskell' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
-Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
+Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
@@ -119,18 +118,21 @@ noremap <leader>sa 1GVG
 noremap <leader>v :e $MYVIMRC<CR>
 
 " Use 'F5' to reload your file and go to the bottom of screen
+" Useful for checking logs
 noremap <F5> :e<CR>G
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NEOVIM settings
+" General neovim settings
 set inccommand=split
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Vim Note settings
-let g:notes_directories = ['~/vimnotes']
-let g:notes_title_sync = 'rename_file'
+" Split-Term settings
+set splitright
+set splitbelow
 
+map te :Term<CR>
+noremap vte :VTerm<CR>
 
 """"""""""""""""""""""""""""""""
 " Paredit settings
@@ -180,20 +182,43 @@ let g:haskellmode_completion_ghc = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 """"""""""""""""""""""""""""""""
-" Haskell - ghc-mod, hdevtools
+" Haskell - intero-neovim
+augroup interoMaps
+  au!
+  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
 
-noremap <silent> gi :GhcModTypeInsert<CR>
-noremap <silent> gs :GhcModSplitFunCase<CR>
-noremap <silent> gt :GhcModType<CR>
-noremap <silent> gcl :GhcModTypeClear<CR>
-noremap <silent> gck :GhcModCheck<CR>
+  " Background process and window management
+  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
+  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
 
-" Get Type info using hdevtools
-au FileType haskell let g:ghcmod_use_basedir = getcwd()
-au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
-"
+  " Open intero/GHCi split horizontally
+  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
+  " Open intero/GHCi split vertically
+  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
+  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+
+  " Reloading (pick one)
+  " Automatically reload on save
+  au BufWritePost *.hs InteroReload
+  " Manually save and reload
+  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
+
+  " Load individual modules
+  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+
+  " Type-related information
+  au FileType haskell nnoremap <silent> <leader>t :InteroGenericType<CR>
+  au FileType haskell nnoremap <silent> <leader>T :InteroType<CR>
+  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
+
+  " Navigation
+  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+
+  " Managing targets
+  " Prompts you to enter targets (no silent):
+  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
+augroup END
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
@@ -304,7 +329,7 @@ let g:pymode_lint_signs = 1
 let pymode_lint_signs = 1
 
 " " Setting AutoPEP8 to F7
-noremap <F7> :PyLintAuto<CR>
+au FileType python noremap <F7> :PyLintAuto<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -321,7 +346,7 @@ noremap <F8> :!fsi %<CR>
 noremap <F9> :!fsc %<CR>
 
 " Evaluate Clojure File
-noremap <leader>e :%Eval<CR>
+au FileType clojure noremap <leader>e :%Eval<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP and CtrlP Funky settings
