@@ -124,7 +124,9 @@ noremap <F5> :e<CR>G
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General neovim settings
-set inccommand=split
+if has('nvim')
+    set inccommand=split
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Split-Term settings
