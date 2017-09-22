@@ -41,9 +41,10 @@ Plug '907th/vim-auto-save'
 
 
 " For particular programming languages
+Plug 'sheerun/vim-polyglot'
+
 Plug 'klen/python-mode' , { 'for' : 'python' }
 
-Plug 'guns/vim-clojure-static' , { 'for' : 'clojure' }
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-leiningen' , { 'for' : 'clojure' }
 Plug 'tpope/vim-fireplace' , { 'for' : 'clojure' }
@@ -52,15 +53,9 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people' , { 'for' : 'clojure' }
 Plug 'venantius/vim-eastwood',  { 'for' : 'clojure' }
 
 Plug 'jelera/vim-javascript-syntax' ,{ 'for' : 'javascript' } 
-Plug 'pangloss/vim-javascript' , { 'for' : 'javascript' }
 Plug 'moll/vim-node' , { 'for' : 'javascript' }
 Plug 'othree/javascript-libraries-syntax.vim' , { 'for' : 'javascript' }
 Plug 'ternjs/tern_for_vim' , { 'for' : 'javascript' }
-
-Plug 'othree/html5.vim' , { 'for' : 'html' }
-Plug 'othree/html5-syntax.vim' , { 'for' : 'html' }
-
-Plug 'wting/rust.vim' , { 'for' : 'rust' }
 
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
