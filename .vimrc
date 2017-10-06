@@ -63,6 +63,9 @@ Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
+Plug 'rust-lang/rust.vim', {'for' : 'rust'}
+Plug 'racer-rust/vim-racer', {'for' : 'rust'}
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -216,6 +219,16 @@ augroup interoMaps
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 augroup END
+
+""""""""""""""""""""""""""""""""
+" Rust
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+
+let g:racer_experimental_completer = 1
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
