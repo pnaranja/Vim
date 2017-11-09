@@ -65,6 +65,7 @@ Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
 Plug 'rust-lang/rust.vim', {'for' : 'rust'}
 Plug 'racer-rust/vim-racer', {'for' : 'rust'}
+Plug 'sebastianmarkow/deoplete-rust', {'for' : 'rust'}
 
 call plug#end()
 
@@ -229,6 +230,21 @@ let g:racer_experimental_completer = 1
 
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" https://github.com/sebastianmarkow/deoplete-rust/issues/13
+if executable('racer')
+  let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
+endif
+
+if executable('rustc')
+    " if src installed via rustup, we can get it by running 
+    " rustc --print sysroot then appending the rest of the path
+    let rustc_root = systemlist('rustc --print sysroot')[0]
+    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
+    if isdirectory(rustc_src_dir)
+        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
+    endif
+endif
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
