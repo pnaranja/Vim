@@ -34,7 +34,7 @@ Plug 'jreybert/vimagit'
 Plug 'plasticboy/vim-markdown'
 
 " Searching
-Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " AutoSave
 Plug '907th/vim-auto-save'
@@ -387,17 +387,10 @@ let g:ctrlp_custom_ignore = {
 nnoremap <Leader>f :CtrlPFunky<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 
-if executable('ag')
+if executable('rg')
  set grepprg=ag\ —-nogroup\ —-nocolor
- let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+ let g:ctrlp_user_command = 'rg %s -l --nocolor -g ""'
  let g:ctrlp_use_caching = 0
-endif
-
-""""""""""""""""""""""""""""""""
-" => Ack/Ag settings
-""""""""""""""""""""""""""""""""
-if executable('ag')
- let g:ackprg = 'ag --vimgrep'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
