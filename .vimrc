@@ -400,6 +400,7 @@ endif
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gl :Git log<CR>
 noremap <leader>gb :Git branch<CR>
+noremap <leader>gbl :Gblame<CR>
 noremap <leader>ga :Gwrite<CR>
 noremap <leader>gc :Gcommit<CR>
 
