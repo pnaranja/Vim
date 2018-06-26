@@ -1,6 +1,6 @@
 set nocompatible
 
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
 Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
