@@ -2,7 +2,6 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
-Plug 'davidhalter/jedi-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'tpope/vim-classpath'
@@ -43,7 +42,8 @@ Plug '907th/vim-auto-save'
 " For particular programming languages
 Plug 'sheerun/vim-polyglot'
 
-Plug 'klen/python-mode' , { 'for' : 'python' }
+Plug 'python-mode/python-mode' , { 'for' : 'python' }
+Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
 
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-leiningen' , { 'for' : 'clojure' }
@@ -314,6 +314,10 @@ let pymode_syntax_space_errors = g:pymode_syntax_all
 " no autofold code
 let g:pymode_folding = 0
 let pymode_folding = 0
+"
+" enable python 3 syntax checking
+let g:pymode_python = 'python3'
+let pymode_python = 'python3'
 
 """"""""""""""""""""""""""""""""
 
