@@ -63,6 +63,8 @@ Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 Plug 'elmcast/elm-vim', {'for' : 'elm'}
 
+Plug 'cespare/vim-toml', {'for' : 'toml'}
+
 Plug 'rust-lang/rust.vim', {'for' : 'rust'}
 Plug 'racer-rust/vim-racer', {'for' : 'rust'}
 Plug 'sebastianmarkow/deoplete-rust', {'for' : 'rust'}
@@ -225,7 +227,12 @@ augroup END
 " Rust
 set hidden
 let g:racer_cmd = "~/.cargo/bin/racer"
+let g:rustfmt_command = "rustfmt +nightly"
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 
+let g:rust_clip_command = 'xclip -selection clipboard'
 let g:racer_experimental_completer = 1
 
 au FileType rust nmap gd <Plug>(rust-def)
@@ -392,7 +399,7 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 
 if executable('rg')
- set grepprg=ag\ —-nogroup\ —-nocolor
+ set grepprg=rg\ --no-heading\ --vimgrep
  let g:ctrlp_user_command = 'rg %s -l --nocolor -g ""'
  let g:ctrlp_use_caching = 0
 endif
