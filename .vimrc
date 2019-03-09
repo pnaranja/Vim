@@ -2,7 +2,7 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
@@ -13,6 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'mklabs/split-term.vim'
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has('nvim')
