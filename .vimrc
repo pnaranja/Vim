@@ -543,6 +543,8 @@ if has("gui_running") || has("gui_vimr")
 colorscheme atom
 endif
 
+set termguicolors
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
