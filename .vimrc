@@ -13,6 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'https://git::@github.com/kovisoft/paredit'
 Plug 'mklabs/split-term.vim'
+Plug 'martingms/vipsql'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
@@ -647,6 +648,42 @@ try
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vipsql (https://github.com/martingms/vipsql)
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Starts an async psql job, prompting for the psql arguments.
+"
+" Also opens a scratch buffer where output from psql is directed.
+noremap <leader>po :VipsqlOpenSession<CR>
+
+" Terminates psql (happens automatically if the output buffer is closed).
+noremap <silent> <leader>pk :VipsqlCloseSession<CR>
+
+" In normal-mode, prompts for input to psql directly.
+nnoremap <leader>ps :VipsqlShell<CR>
+
+" In visual-mode, sends the selected text to psql.
+vnoremap <leader>ps :VipsqlSendSelection<CR>
+
+" Sends the selected _range_ to psql.
+noremap <leader>pr :VipsqlSendRange<CR>
+
+" Sends the current line to psql.
+noremap <leader>pl :VipsqlSendCurrentLine<CR>
+
+" Sends the entire current buffer to psql.
+noremap <leader>pb :VipsqlSendBuffer<CR>
+
+" Sends `SIGINT` (C-c) to the psql process.
+noremap <leader>pc :VipsqlSendInterrupt<CR>
+
+" Whether or not to clear the output buffer on each send.
+let g:vipsql_auto_clear_enabled = 1
+
+" What that separator should look like.
+let g:vipsql_separator = '────'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
