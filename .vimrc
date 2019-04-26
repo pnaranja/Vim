@@ -17,6 +17,11 @@ Plug 'martingms/vipsql'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 if has('nvim')
     function! DoRemote(arg)
       UpdateRemotePlugins
@@ -26,10 +31,11 @@ else
     Plug 'Shougo/neocomplete'
 endif
 
+
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
 
 " Markdown
 Plug 'plasticboy/vim-markdown'
@@ -159,6 +165,29 @@ else " no gui
     inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
   endif
 endif
+""""""""""""""""""""""""""""""""
+" LSP - LanguageClient_serverCommands
+
+let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'] }
+
+function SetLSPShortcuts()
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+  autocmd!
+  autocmd FileType rust call SetLSPShortcuts()
+augroup END
+
 
 """"""""""""""""""""""""""""""""
 " AutoCompletion
@@ -237,9 +266,6 @@ let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 let g:racer_experimental_completer = 1
 
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
 " https://github.com/sebastianmarkow/deoplete-rust/issues/13
 if executable('racer')
   let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
@@ -299,6 +325,7 @@ let pymode_lint_write = 1
 "Ale Linting
 let g:ale_lint_on_text_changed = "normal"
 let g:ale_lint_delay = 3000
+let b:ale_linters = {'rust': ['rustup', 'run', 'nightly', 'rls']}
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
@@ -373,16 +400,10 @@ au FileType python noremap <F7> :PyLintAuto<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Run Python and Jython script
-au FileType python noremap <F3> :!python %<CR>
-au FileType python noremap <F4> :!jython %<CR>
+au FileType python noremap <F3> :!python3 %<CR>
 
 ""Run PDB on Python script
-au FileType python noremap <F6> :!python -i -u -m pdb %<CR>
-
-
-""Run FSharp Interactive and Compilation
-noremap <F8> :!fsi %<CR>
-noremap <F9> :!fsc %<CR>
+au FileType python noremap <F6> :!python3 -i -u -m pdb %<CR>
 
 " Evaluate Clojure File
 au FileType clojure noremap <leader>e :%Eval<CR>
