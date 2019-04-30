@@ -2,8 +2,6 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -11,9 +9,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
-Plug 'https://git::@github.com/kovisoft/paredit'
-Plug 'mklabs/split-term.vim'
-Plug 'martingms/vipsql'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
@@ -39,6 +34,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Markdown
 Plug 'plasticboy/vim-markdown'
+Plug 'vimwiki/vimwiki'
 
 " Searching
 Plug 'jremmen/vim-ripgrep'
@@ -93,7 +89,7 @@ map <space> <leader>
 noremap ; :
 
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=1000
 
 " Enable line numbers
 set nu
@@ -111,6 +107,10 @@ au BufNewFile,BufRead *.jy set filetype=python
 " Recognize Markdown and disable folding
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:vim_markdown_folding_disabled = 1
+
+" VimWiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -136,21 +136,6 @@ noremap <F5> :e<CR>G
 if has('nvim')
     set inccommand=split
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Split-Term settings
-set splitright
-set splitbelow
-
-map te :Term<CR>
-noremap vte :VTerm<CR>
-
-""""""""""""""""""""""""""""""""
-" Paredit settings
-au FileType javascript call PareditInitBuffer()
-au FileType python call PareditInitBuffer()
-au FileType rust call PareditInitBuffer()
-au FileType elm call PareditInitBuffer()
 
 
 """"""""""""""""""""""""""""""""
@@ -408,24 +393,6 @@ au FileType python noremap <F6> :!python3 -i -u -m pdb %<CR>
 " Evaluate Clojure File
 au FileType clojure noremap <leader>e :%Eval<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP and CtrlP Funky settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode=''
-
-let g:ctrlp_custom_ignore = {
- \ 'dir': '\.git$\|\.yardoc\|bower_components|node_modules|public$|log\|tmp$',
- \ 'file': '\.so$\|\.dat$|\.DS_Store$'
- \ }
-
-nnoremap <Leader>f :CtrlPFunky<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-
-if executable('rg')
- set grepprg=rg\ --no-heading\ --vimgrep
- let g:ctrlp_user_command = 'rg %s -l --nocolor -g ""'
- let g:ctrlp_use_caching = 0
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive (Git)
@@ -443,30 +410,6 @@ noremap <leader>gfm :Git fetch origin master<cr>
 noremap <leader>gmm :Git merge origin master<cr>
 noremap <leader>gplm :Git pull origin master<cr>
 noremap <leader>gpsm :Git push origin master<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_javascript_checkers = ['eslint']
-
-" Options for Haskell Syntax Check
-let g:syntastic_haskell_hdevtools_args = '-g-Wall'
-
-" For Elm
-let g:elm_syntastic_show_warnings = 0
-let g:elm_detailed_complete = 0
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-" Toggle Syntastic
-noremap <leader>st :SyntasticToggleMode<CR>
-
-" Show Error list
-noremap <leader>sl :Errors<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Parenthesis
@@ -670,41 +613,6 @@ try
 " Remember info about open buffers on close
 set viminfo^=%
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vipsql (https://github.com/martingms/vipsql)
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Starts an async psql job, prompting for the psql arguments.
-"
-" Also opens a scratch buffer where output from psql is directed.
-noremap <leader>po :VipsqlOpenSession<CR>
-
-" Terminates psql (happens automatically if the output buffer is closed).
-noremap <silent> <leader>pk :VipsqlCloseSession<CR>
-
-" In normal-mode, prompts for input to psql directly.
-nnoremap <leader>ps :VipsqlShell<CR>
-
-" In visual-mode, sends the selected text to psql.
-vnoremap <leader>ps :VipsqlSendSelection<CR>
-
-" Sends the selected _range_ to psql.
-noremap <leader>pr :VipsqlSendRange<CR>
-
-" Sends the current line to psql.
-noremap <leader>pl :VipsqlSendCurrentLine<CR>
-
-" Sends the entire current buffer to psql.
-noremap <leader>pb :VipsqlSendBuffer<CR>
-
-" Sends `SIGINT` (C-c) to the psql process.
-noremap <leader>pc :VipsqlSendInterrupt<CR>
-
-" Whether or not to clear the output buffer on each send.
-let g:vipsql_auto_clear_enabled = 1
-
-" What that separator should look like.
-let g:vipsql_separator = '────'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
