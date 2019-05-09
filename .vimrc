@@ -492,20 +492,20 @@ set tm=2000
 syntax enable
 syntax on
 
-colorscheme 256-grayvim
-
 " Set utf8 as standard encoding and en_US as the standard language
 " set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos
 
+colorscheme Tomorrow-Night
+
 " Set extra options when running in GUI mode
 if has("gui_running") || has("gui_vimr")
     set guioptions-=T
     set guioptions+=e
     set guitablabel=%M\ %t
-colorscheme atom
+    colorscheme atom
 endif
 
 set termguicolors
