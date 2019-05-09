@@ -108,6 +108,7 @@ au BufNewFile,BufRead *.jy set filetype=python
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:vim_markdown_folding_disabled = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -118,10 +119,15 @@ set autoread
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
 
-" Select all
-noremap <leader>sa 1GVG
+" Set VimDiaryNote shortcuts
+:nmap <Leader>dn <Plug>VimwikiMakeDiaryNote
+:nmap <Leader>di <Plug>VimwikiDiaryIndex
+:nmap <Leader>dgl <Plug>VimwikiDiaryGenerateLinks
+:nmap <Leader>ti <Plug>VimwikiToggleListItem
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Select all
+noremap <leader>sa 1GVG
 
 " Quick open of the vimrc file
 noremap <leader>v :e $MYVIMRC<CR>
