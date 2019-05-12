@@ -120,6 +120,7 @@ set autoread
 autocmd BufEnter * silent! lcd %:p:h
 
 " Set VimDiaryNote shortcuts
+:nmap <Leader>dy <Plug>VimwikiMakeYesterdayDiaryNote
 :nmap <Leader>dn <Plug>VimwikiMakeDiaryNote
 :nmap <Leader>di <Plug>VimwikiDiaryIndex
 :nmap <Leader>dgl <Plug>VimwikiDiaryGenerateLinks
