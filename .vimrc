@@ -70,8 +70,6 @@ Plug 'elmcast/elm-vim', {'for' : 'elm'}
 Plug 'cespare/vim-toml', {'for' : 'toml'}
 
 Plug 'rust-lang/rust.vim', {'for' : 'rust'}
-Plug 'racer-rust/vim-racer', {'for' : 'rust'}
-Plug 'sebastianmarkow/deoplete-rust', {'for' : 'rust'}
 
 call plug#end()
 
@@ -248,20 +246,6 @@ augroup END
 
 """"""""""""""""""""""""""""""""
 " Rust
-set hidden
-let g:racer_cmd = "~/.cargo/bin/racer"
-let g:rustfmt_command = "rustfmt +nightly"
-let g:rustfmt_autosave = 1
-let g:rustfmt_emit_files = 1
-let g:rustfmt_fail_silently = 0
-
-let g:rust_clip_command = 'xclip -selection clipboard'
-let g:racer_experimental_completer = 1
-
-" https://github.com/sebastianmarkow/deoplete-rust/issues/13
-if executable('racer')
-  let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
-endif
 
 if executable('rustc')
     " if src installed via rustup, we can get it by running 
