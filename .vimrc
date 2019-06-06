@@ -471,9 +471,6 @@ set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
 " For regular expressions turn magic on
 set magic
 
@@ -490,6 +487,15 @@ set tm=500
 
 " Set Leader timeout
 set tm=2000
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Macros
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Repeat last macro
+nnoremap Q @@
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
