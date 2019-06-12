@@ -1,7 +1,6 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'w0rp/ale'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -27,7 +26,6 @@ else
 endif
 
 
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -45,9 +43,6 @@ Plug '907th/vim-auto-save'
 
 " For particular programming languages
 Plug 'sheerun/vim-polyglot'
-
-Plug 'python-mode/python-mode' , { 'for' : 'python' }
-Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
 
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-leiningen' , { 'for' : 'clojure' }
@@ -98,9 +93,6 @@ set rnu
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
-" Recognize jython files as python
-au BufNewFile,BufRead *.jy set filetype=python
 
 " Recognize Markdown and disable folding
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -158,7 +150,8 @@ endif
 """"""""""""""""""""""""""""""""
 " LSP - LanguageClient_serverCommands
 
-let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'] }
+let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+                                        \ 'python': ['/usr/local/bin/pyls']}
 
 function SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
@@ -265,125 +258,6 @@ noremap <leader>em :ElmMake<CR>
 noremap <leader>er :ElmRepl<CR>
 noremap <leader>ed :ElmShowDocs<CR>
 noremap <leader>ef :ElmFormat<CR>
-
-""""""""""""""""""""""""""""""""
-" Python-mode
-" Activate rope
-" Keys:
-" K             Show python docs
-" <Ctrl-Space>  Rope autocomplete
-" <Ctrl-c>g     Rope goto definition
-" <Ctrl-c>d     Rope show documentation
-" <Ctrl-c>f     Rope find occurrences
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 0
-let pymode_rope = 0
-
-" Documentation
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-let pymode_doc = 0
-let pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes"
-let pymode_lint = 1
-let pymode_lint_checker = "pyflakes"
-" Auto check on save
-let g:pymode_lint_write = 1
-let pymode_lint_write = 1
-
-"Ale Linting
-let g:ale_lint_on_text_changed = "normal"
-let g:ale_lint_delay = 3000
-let b:ale_linters = {'rust': ['rustup', 'run', 'nightly', 'rls']}
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-let pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
-let pymode_breakpoint = 1
-let pymode_breakpoint_key = '<leader>b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let pymode_syntax = 1
-let pymode_syntax_all = 1
-let pymode_syntax_indent_errors = g:pymode_syntax_all
-let pymode_syntax_space_errors = g:pymode_syntax_all
-
-" no autofold code
-let g:pymode_folding = 0
-let pymode_folding = 0
-"
-" enable python 3 syntax checking
-let g:pymode_python = 'python3'
-let pymode_python = 'python3'
-
-""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
-" => Pylint settings
-" """"""""""""""""""""""""""""""
-" Load pylint code plugin
-let g:pymode_lint = 1
-let pymode_lint = 1
-
-" " Switch pylint, pyflakes, pep8, mccabe code-checkers
-" " Can have multiply values "pep8,pyflakes,mcccabe"
-let g:pymode_lint_checker = "pyflakes, mccabe"
-let pymode_lint_checker = "pyflakes, mccabe"
-
-" " Skip errors and warnings
-" " E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors startswith E2) and etc
-let g:pymode_lint_ignore = "E501"
-let pymode_lint_ignore = "E501"
-
-" " Select errors and warnings
-" " E.g. "E4,W"
-" let g:pymode_lint_select = ""
-
-" " Check code every save
-let g:pymode_lint_write = 1
-let pymode_lint_write = 1
-
-" " Auto open cwindow if errors be finded
-let g:pymode_lint_cwindow = 1
-let pymode_lint_cwindow = 1
-"
-" " Show error message if cursor placed at the error line
-let g:pymode_lint_message = 1
-let pymode_lint_message = 1
-
-" " Place error signs
-let g:pymode_lint_signs = 1
-let pymode_lint_signs = 1
-
-" " Setting AutoPEP8 to F7
-au FileType python noremap <F7> :PyLintAuto<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Run Python and Jython script
-au FileType python noremap <F3> :!python3 %<CR>
-
-""Run PDB on Python script
-au FileType python noremap <F6> :!python3 -i -u -m pdb %<CR>
-
-" Evaluate Clojure File
-au FileType clojure noremap <leader>e :%Eval<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive (Git)
