@@ -106,6 +106,10 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" Default behavior changes filetype to wiki
+" Reset the vimwiki file type to markdown
+autocmd FileType vimwiki set ft=markdown
+
 " Set current working directory as the file that is open
 autocmd BufEnter * silent! lcd %:p:h
 
