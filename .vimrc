@@ -44,6 +44,8 @@ Plug '907th/vim-auto-save'
 " For particular programming languages
 Plug 'sheerun/vim-polyglot'
 
+Plug 'mMontu/vim-RobotUtils', {'for' : 'robot'}
+
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-leiningen' , { 'for' : 'clojure' }
 Plug 'tpope/vim-fireplace' , { 'for' : 'clojure' }
@@ -173,6 +175,7 @@ endfunction()
 augroup LSP
   autocmd!
   autocmd FileType rust call SetLSPShortcuts()
+  autocmd FileType python call SetLSPShortcuts()
 augroup END
 
 
@@ -462,8 +465,9 @@ noremap bn :bn <cr>
 noremap bo :BufOnly! <cr>
 " " List buffers
 noremap <leader>l :ls <cr>
+" " New buffer with full screen
+noremap nb :new<cr>:only<cr>
 
-"
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
 noremap to :tabonly<cr>
