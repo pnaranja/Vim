@@ -25,6 +25,9 @@ else
     Plug 'Shougo/neocomplete'
 endif
 
+" Writing
+Plug 'https://github.com/junegunn/goyo.vim'
+Plug 'https://github.com/junegunn/limelight.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -198,6 +201,23 @@ endif
 let g:auto_save = 1
 let g:auto_save_silent = 1
 let updatetime=500
+
+""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""
+" Writing
+
+" Goyo integration with Limelight
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" Toggle LimeLight
+noremap <leader>l :Limelight!!<cr>
+
+" Toggle Goya
+noremap <leader>g :Goyo<cr>
+
+
 
 """"""""""""""""""""""""""""""""
 
@@ -456,15 +476,11 @@ if has('nvim')
 endif
 
 " " Close the current buffer
-noremap bd :bd<cr>
-" " Close all the buffers
-noremap ba :ba<cr>
+noremap bd :bd!<cr>
 " " Switch to next buffer
 noremap bn :bn <cr>
 " " Close all the buffers except current buffer
 noremap bo :BufOnly! <cr>
-" " List buffers
-noremap <leader>l :ls <cr>
 " " New buffer with full screen
 noremap nb :new<cr>:only<cr>
 
