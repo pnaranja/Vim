@@ -77,6 +77,7 @@ call plug#end()
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 " <leader> is <space> and comma
 let mapleader = ","
 let g:mapleader = ","
@@ -102,6 +103,9 @@ filetype indent on
 " Recognize Markdown and disable folding
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:vim_markdown_folding_disabled = 1
+
+" Shortcut for Vim Plug Update and Upgrade
+noremap <leader>pu :PlugUpdate<CR> :PlugUpgrade<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
