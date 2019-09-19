@@ -468,6 +468,9 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
+" Substitute <ESC> for j and k 
+inoremap ;; <C-C>
+
 if has('nvim')
     " Use <Esc> to escape terminal insert mode
     tnoremap <Esc> <C-\><C-n>
@@ -482,11 +485,11 @@ endif
 " " Close the current buffer
 noremap bd :bd!<cr>
 " " Switch to next buffer
-noremap bn :bn <cr>
+nnoremap <leader>b :ls<Cr>:b<Space>
 " " Close all the buffers except current buffer
 noremap bo :BufOnly! <cr>
 " " New buffer with full screen
-noremap nb :new<cr>:only<cr>
+noremap bn :new<cr>:only<cr>
 
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
