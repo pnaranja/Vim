@@ -219,7 +219,7 @@ autocmd! User GoyoLeave Limelight!
 noremap <leader>l :Limelight!!<cr>
 
 " Toggle Goya
-noremap <leader>g :Goyo<cr>
+noremap <leader>go :Goyo<cr>
 
 
 
