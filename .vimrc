@@ -468,8 +468,8 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
-" Substitute <ESC> for j and k 
-inoremap ;; <C-C>
+" Substitute <ESC> for j and k when in insert mode
+inoremap ;; <Esc>
 
 if has('nvim')
     " Use <Esc> to escape terminal insert mode
