@@ -470,6 +470,7 @@ noremap <C-l> <C-W>l
 
 " Substitute <ESC> for j and k when in insert mode
 inoremap ;; <Esc>
+vnoremap ;; <Esc>
 
 if has('nvim')
     " Use <Esc> to escape terminal insert mode
