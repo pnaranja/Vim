@@ -191,9 +191,9 @@ augroup END
 
 if has('nvim')
     " deoplete
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_ignore_case = 1  "let matcher ignore case
-    let g:deoplete#enable_smart_case = 1   "smart case
+    let g:deoplete#custom_var#enable_at_startup = 1
+    let g:deoplete#custom_var#enable_ignore_case = 1  "let matcher ignore case
+    let g:deoplete#custom_var#enable_smart_case = 1   "smart case
     let g:deoplete#omni#input_patterns = {}
 else
     " neocomplete
