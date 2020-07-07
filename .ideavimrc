@@ -1,3 +1,14 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set commentary
+set ideajoin
+set ideaput
+set ideamarks
+
+set wrapscan
+set showmode
 set incsearch
 set hlsearch
 set number
@@ -5,3 +16,6 @@ set relativenumber
 
 set history=1000
 set scrolloff=7
+
+map ; :
+map gh :action QuickJavaDoc<CR>
