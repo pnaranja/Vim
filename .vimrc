@@ -163,8 +163,7 @@ endif
 """"""""""""""""""""""""""""""""
 " LSP - LanguageClient_serverCommands
 
-let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-                                        \ 'python': ['/usr/local/bin/pyls']}
+let g:LanguageClient_serverCommands = { 'rust': ['/usr/local/bin/rust-analyzer'], 'python': ['/usr/local/bin/pyls']}
 
 function SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
