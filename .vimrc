@@ -1,6 +1,7 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -24,6 +25,10 @@ if has('nvim')
 else
     Plug 'Shougo/neocomplete'
 endif
+
+" Vim Sneak
+let g:sneak#label = 1
+let g:sneak#s_next = 1
 
 " Writing
 Plug 'https://github.com/junegunn/goyo.vim'
