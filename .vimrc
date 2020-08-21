@@ -76,6 +76,8 @@ Plug 'cespare/vim-toml', {'for' : 'toml'}
 
 Plug 'rust-lang/rust.vim', {'for' : 'rust'}
 
+Plug 'alaviss/nim.nvim', {'for' : 'nim'}
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,7 +170,7 @@ endif
 """"""""""""""""""""""""""""""""
 " LSP - LanguageClient_serverCommands
 
-let g:LanguageClient_serverCommands = { 'rust': ['/usr/local/bin/rust-analyzer'], 'python': ['/usr/local/bin/pyls']}
+let g:LanguageClient_serverCommands = { 'nim':['~/.nimble/bin/nimlsp'],'rust': ['/usr/local/bin/rust-analyzer'], 'python': ['/usr/local/bin/pyls']}
 
 function SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
@@ -187,6 +189,7 @@ augroup LSP
   autocmd!
   autocmd FileType rust call SetLSPShortcuts()
   autocmd FileType python call SetLSPShortcuts()
+  autocmd FileType nim call SetLSPShortcuts()
 augroup END
 
 
@@ -203,6 +206,21 @@ else
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
 endif
+
+" Rust-Autocompletion
+
+if executable('rustc')
+    " if src installed via rustup, we can get it by running 
+    " rustc --print sysroot then appending the rest of the path
+    let rustc_root = systemlist('rustc --print sysroot')[0]
+    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
+    if isdirectory(rustc_src_dir)
+        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
+    endif
+endif
+
+" Nim-Autocompletion
+let g:deoplete#sources#nim#nim_source_path = '~/.choosenim/toolchains/nim-1.2.6/lib'
 
 """"""""""""""""""""""""""""""""
 " AutoSave
@@ -271,19 +289,6 @@ augroup interoMaps
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 augroup END
-
-""""""""""""""""""""""""""""""""
-" Rust
-
-if executable('rustc')
-    " if src installed via rustup, we can get it by running 
-    " rustc --print sysroot then appending the rest of the path
-    let rustc_root = systemlist('rustc --print sysroot')[0]
-    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
-    if isdirectory(rustc_src_dir)
-        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
-    endif
-endif
 
 """"""""""""""""""""""""""""""""
 " Elm format and commands
