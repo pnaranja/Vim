@@ -19,3 +19,6 @@ set scrolloff=7
 
 map ; :
 map gh :action QuickJavaDoc<CR>
+
+inoremap ;; <Esc>
+vnoremap ;; <Esc>
