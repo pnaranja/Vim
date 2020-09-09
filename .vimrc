@@ -493,13 +493,13 @@ if has('nvim')
 endif
 
 " " Close the current buffer
-noremap bd :bd!<cr>
+noremap <leader>bd :bd!<cr>
 " " Switch to next buffer
 nnoremap <leader>b :ls<Cr>:b<Space>
 " " Close all the buffers except current buffer
-noremap bo :BufOnly! <cr>
+noremap <leader>bo :BufOnly! <cr>
 " " New buffer with full screen
-noremap bn :new<cr>:only<cr>
+noremap <leader>bn :new<cr>:only<cr>
 
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
