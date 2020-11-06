@@ -22,6 +22,7 @@ if has('nvim')
       UpdateRemotePlugins
     endfunction
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    Plug 'zchee/deoplete-clang'
 else
     Plug 'Shougo/neocomplete'
 endif
@@ -170,7 +171,7 @@ endif
 """"""""""""""""""""""""""""""""
 " LSP - LanguageClient_serverCommands
 
-let g:LanguageClient_serverCommands = { 'nim':['~/.nimble/bin/nimlsp'],'rust': ['/usr/local/bin/rust-analyzer'], 'python': ['/usr/local/bin/pyls']}
+let g:LanguageClient_serverCommands = { 'nim':['~/.nimble/bin/nimlsp'],'rust': ['/usr/local/bin/rust-analyzer'], 'python': ['/usr/local/bin/pyls'], 'cpp':['clangd'], 'c':['clangd']}
 
 function SetLSPShortcuts()
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
@@ -190,6 +191,8 @@ augroup LSP
   autocmd FileType rust call SetLSPShortcuts()
   autocmd FileType python call SetLSPShortcuts()
   autocmd FileType nim call SetLSPShortcuts()
+  autocmd FileType c call SetLSPShortcuts()
+  autocmd FileType cpp call SetLSPShortcuts()
 augroup END
 
 
@@ -202,6 +205,7 @@ if has('nvim')
     let g:deoplete#custom_var#enable_ignore_case = 1  "let matcher ignore case
     let g:deoplete#custom_var#enable_smart_case = 1   "smart case
     let g:deoplete#omni#input_patterns = {}
+
 else
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
@@ -221,6 +225,10 @@ endif
 
 " Nim-Autocompletion
 let g:deoplete#sources#nim#nim_source_path = '~/.choosenim/toolchains/nim-1.2.6/lib'
+
+" C/C++ Autocompletion - Assume Mac
+let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/lib/clang'
 
 """"""""""""""""""""""""""""""""
 " AutoSave
@@ -495,11 +503,15 @@ endif
 " " Close the current buffer
 noremap <leader>bd :bd!<cr>
 " " Switch to next buffer
-nnoremap <leader>b :ls<Cr>:b<Space>
+nnoremap <leader>bb :ls<Cr>:b<Space>
 " " Close all the buffers except current buffer
 noremap <leader>bo :BufOnly! <cr>
+" " Next buffer to the right
+noremap <leader>bn :bn<cr>
+" " Next buffer to the left
+noremap <leader>bN :bN<cr>
 " " New buffer with full screen
-noremap <leader>bn :new<cr>:only<cr>
+noremap <leader>bw :new<cr>:only<cr>
 
 " " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
