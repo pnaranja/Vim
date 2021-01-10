@@ -502,14 +502,19 @@ endif
 
 " " Close the current buffer
 noremap <leader>bd :bd!<cr>
-" " Switch to next buffer
+"
+" " List buffers
 nnoremap <leader>bb :ls<Cr>:b<Space>
+
 " " Close all the buffers except current buffer
 noremap <leader>bo :BufOnly! <cr>
+
 " " Next buffer to the right
 noremap <leader>bn :bn<cr>
+
 " " Next buffer to the left
 noremap <leader>bN :bN<cr>
+
 " " New buffer with full screen
 noremap <leader>bw :new<cr>:only<cr>
 
