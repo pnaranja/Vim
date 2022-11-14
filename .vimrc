@@ -2,6 +2,7 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'justinmk/vim-sneak'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -316,7 +317,7 @@ noremap <leader>gl :Git log<CR>
 noremap <leader>gb :Git branch<CR>
 noremap <leader>gbl :Gblame<CR>
 noremap <leader>ga :Gwrite<CR>
-noremap <leader>gc :Git Commit<CR>
+noremap <leader>gc :Git commit<CR>
 
 " Fetch, Merge, Pull and Push
 noremap <leader>gfm :Git fetch origin master<cr>
