@@ -13,6 +13,7 @@ set incsearch
 set hlsearch
 set number
 set relativenumber
+set sneak
 
 set history=1000
 set scrolloff=7
