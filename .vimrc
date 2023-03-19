@@ -7,8 +7,9 @@ Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
-Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
