@@ -2,6 +2,8 @@
 let mapleader=" "
 
 """ Plugins  --------------------------------
+Plug 'justinmk/vim-sneak'
+
 set commentary
 set ideajoin
 set ideaput
@@ -13,13 +15,21 @@ set incsearch
 set hlsearch
 set number
 set relativenumber
-set sneak
 
 set history=1000
 set scrolloff=7
 
+""" Plugins settings  --------------------------------
+let g:sneak#label = 1
+let g:sneak#s_next = 1
+
+
+""" Mappings  --------------------------------
 map ; :
 map gh :action QuickJavaDoc<CR>
+
+map f <Plug>Sneak_;
+map F <Plug>Sneak_,
 
 inoremap ;; <Esc>
 vnoremap ;; <Esc>
