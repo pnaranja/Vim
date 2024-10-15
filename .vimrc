@@ -1,7 +1,7 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'justinmk/vim-sneak'
+Plug 'ggandor/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
@@ -28,10 +28,6 @@ if has('nvim')
 else
     Plug 'Shougo/neocomplete'
 endif
-
-" Vim Sneak
-let g:sneak#label = 1
-let g:sneak#s_next = 1
 
 " Writing
 Plug 'https://github.com/junegunn/goyo.vim'
@@ -82,6 +78,8 @@ Plug 'rust-lang/rust.vim', {'for' : 'rust'}
 Plug 'alaviss/nim.nvim', {'for' : 'nim'}
 
 call plug#end()
+
+lua require('leap').create_default_mappings()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
