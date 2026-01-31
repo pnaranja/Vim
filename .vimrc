@@ -1,7 +1,8 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'ggandor/leap.nvim'
+" Plug 'ggandor/leap.nvim'
+Plug 'https://codeberg.org/andyg/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-surround'
