@@ -1,7 +1,6 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'ggandor/leap.nvim'
 Plug 'https://codeberg.org/andyg/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-classpath'
@@ -12,7 +11,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
 Plug 'ervandew/supertab'
-Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+'
+Plug 'ifreund/skim-preview.vim'
+Plug 'lotabout/skim.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'autozimu/LanguageClient-neovim', {
@@ -79,8 +80,6 @@ Plug 'rust-lang/rust.vim', {'for' : 'rust'}
 Plug 'alaviss/nim.nvim', {'for' : 'nim'}
 
 call plug#end()
-
-lua require('leap').create_default_mappings()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
